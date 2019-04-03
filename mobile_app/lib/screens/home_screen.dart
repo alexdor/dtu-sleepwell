@@ -17,17 +17,8 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return new PlatformScaffold(
-        title: "Sleepwell",
-        child: new ConstrainedBox(
-            constraints: const BoxConstraints.expand(height: 120.0),
-            child: new Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: new Align(
-                    alignment: const Alignment(-1.0, -1.0),
-                    child: new Flex(
-                      direction: Axis.horizontal,
-                      mainAxisSize: MainAxisSize.max,
-                      children: <Widget>[_logo],
-                    )))));
+      title: "Sleepwell",
+      child: _logo,
+    );
   }
 }
