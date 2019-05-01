@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sleep_well/components/scaffold.dart';
+import "package:intl/intl.dart";
 
 class SelectDate extends StatefulWidget {
   SelectDate({Key key}) : super(key: key);
@@ -9,14 +10,14 @@ class SelectDate extends StatefulWidget {
 
 class _SelectDateState extends State<SelectDate> {
   DateTime _dateTime;
-  TimeOfDay _timeOfDay = new TimeOfDay.now();
+  DateTime _timeOfDay = new DateTime.now();
 
   Future<Null> _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
         context: context,
-        initialDate: _dateTime,
-        firstDate: new DateTime(2016),
-        lastDate: new DateTime(2019));
+        initialDate: _timeOfDay,
+        firstDate: DateTime(2015, 8),
+        lastDate: DateTime(2101));
     if (picked != null && picked != _dateTime) {
       print('date selected: ${_dateTime.toString()}');
       setState(() {
@@ -62,7 +63,7 @@ class _SelectDateState extends State<SelectDate> {
                 title: Text(
                   _dateTime == null
                       ? "Please select a date"
-                      : "'date selected: ${_dateTime.toString()}'", //Select Date
+                      : "Date selected: ${DateFormat('EEEE').format(_dateTime)}, ${DateFormat('MMM').format(_dateTime)} ${_dateTime.day}", //Select Date
                   style: TextStyle(
                     fontFamily: 'Comfortaa',
                     color: Color(0xFF382E21),
@@ -76,11 +77,7 @@ class _SelectDateState extends State<SelectDate> {
               ),
               RaisedButton(
                   child: new Text("Select Date"),
-                  onPressed: () {
-                    Text("text");
-                    //_dateTime = new DateTime.now();
-                    //_selectDate(context);
-                  }),
+                  onPressed: () => _selectDate(context)),
             ],
           ),
         ));

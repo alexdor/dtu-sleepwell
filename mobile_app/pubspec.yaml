@@ -19,6 +19,7 @@ environment:
 dependencies:
   dots_indicator: ^0.0.4
   datetime_picker_formfield: ^0.1.8
+  intl: 0.15.8
   flutter:
     sdk: flutter
 
