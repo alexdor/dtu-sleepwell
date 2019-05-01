@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:sleep_well/screens/home_screen.dart';
 import 'package:sleep_well/screens/onboarding_screen.dart';
 import 'package:sleep_well/screens/select_date.dart';
+import 'package:sleep_well/screens/sleepdiary_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -18,7 +19,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/intro': (context) => OnBoardingPage(),
         '/date': (context) => SelectDate(),
-        '/': (context) => MyHomePage()
+        '/': (context) => MyHomePage(),
+        '/diary': (context) => SleepDiary()
       },
     );
   }

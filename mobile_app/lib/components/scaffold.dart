@@ -64,7 +64,9 @@ class ScreenScaffold extends StatelessWidget {
               ),
               IconButton(
                 icon: Icon(Icons.calendar_today),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/diary');
+                },
               ),
               IconButton(
                 icon: Icon(null),
