@@ -28,34 +28,61 @@ class _SelectDateState extends State<SelectDate> {
   @override
   Widget build(BuildContext context) {
     return ScreenScaffold(
-        body: new Container(
-      child: new Column(
-        children: <Widget>[
-          ListTile(
-            title: Text(
-              _dateTime == null
-                  ? "Please select a date"
-                  : "'date selected: ${_dateTime.toString()}'", //Select Date
-              style: TextStyle(
-                fontFamily: 'Comfortaa',
-                color: Color(0xFF382E21),
-                fontSize: 20.0,
+        title: Text(
+          "Add Sleep Session",
+          textAlign: TextAlign.justify,
+          style: TextStyle(
+            fontFamily: 'Comfortaa',
+            color: Color(0xFF382E21),
+            fontSize: 20.0,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        actions: <Widget>[
+          Container(
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                "Save",
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  fontFamily: 'Comfortaa',
+                  color: Color(0xFF382E21),
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
-            leading: Icon(
-              Icons.calendar_today,
-              color: Color(0xFF382E21),
-            ),
-          ),
-          RaisedButton(
-              child: new Text("Select Date"),
-              onPressed: () {
-                Text("text");
-                //_dateTime = new DateTime.now();
-                //_selectDate(context);
-              }),
+          )
         ],
-      ),
-    ));
+        body: new Container(
+          child: new Column(
+            children: <Widget>[
+              ListTile(
+                title: Text(
+                  _dateTime == null
+                      ? "Please select a date"
+                      : "'date selected: ${_dateTime.toString()}'", //Select Date
+                  style: TextStyle(
+                    fontFamily: 'Comfortaa',
+                    color: Color(0xFF382E21),
+                    fontSize: 20.0,
+                  ),
+                ),
+                leading: Icon(
+                  Icons.calendar_today,
+                  color: Color(0xFF382E21),
+                ),
+              ),
+              RaisedButton(
+                  child: new Text("Select Date"),
+                  onPressed: () {
+                    Text("text");
+                    //_dateTime = new DateTime.now();
+                    //_selectDate(context);
+                  }),
+            ],
+          ),
+        ));
   }
 }

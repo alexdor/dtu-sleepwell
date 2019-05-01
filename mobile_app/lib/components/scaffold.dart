@@ -3,8 +3,12 @@ import 'package:flutter/material.dart';
 class ScreenScaffold extends StatelessWidget {
   final Widget body;
   final bool hideAppBar;
+  final Widget title;
+  final List<Widget> actions;
 
-  const ScreenScaffold({Key key, this.body, this.hideAppBar}) : super(key: key);
+  const ScreenScaffold(
+      {Key key, this.body, this.hideAppBar, this.title, this.actions})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,33 +18,8 @@ class ScreenScaffold extends StatelessWidget {
           : AppBar(
               automaticallyImplyLeading: true,
               backgroundColor: Color(0xFFE08E79),
-              actions: <Widget>[
-                Container(
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      "Save",
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        fontFamily: 'Comfortaa',
-                        color: Color(0xFF382E21),
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                )
-              ],
-              title: Text(
-                "Add Sleep Session",
-                textAlign: TextAlign.justify,
-                style: TextStyle(
-                  fontFamily: 'Comfortaa',
-                  color: Color(0xFF382E21),
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              actions: actions,
+              title: title,
             ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(

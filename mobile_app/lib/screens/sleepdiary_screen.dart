@@ -5,6 +5,7 @@ class SleepDiary extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenScaffold(
+      title: Text("Sleep Diary"),
       body: new Container(
           child: ListView(
               shrinkWrap: true,
