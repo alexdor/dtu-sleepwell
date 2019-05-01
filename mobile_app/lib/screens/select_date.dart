@@ -9,15 +9,25 @@ class SelectDate extends StatelessWidget {
         automaticallyImplyLeading: true,
         backgroundColor: Color(0xFFE08E79),
         actions: <Widget>[
-          IconButton(
-            icon: Icon(
-              Icons.save_alt,
+          Container(
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                "Save",
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  fontFamily: 'Comfortaa',
+                  color: Color(0xFF382E21),
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
-            onPressed: () {},
           )
         ],
         title: Text(
           "Add Sleep Session",
+          textAlign: TextAlign.justify,
           style: TextStyle(
             fontFamily: 'Comfortaa',
             color: Color(0xFF382E21),
@@ -25,35 +35,42 @@ class SelectDate extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        // title: Text(
-        //   "Add Sleep Session",
-        //   style: TextStyle(
-        //     fontFamily: 'Comfortaa', color: Color(0xFF382E21),fontSize: 20.0, fontWeight: FontWeight.bold,
-        //   ),
-        // ),
-        // leading: IconButton(icon: Icon(Icons.arrow_back, color: Color(0xFF382E21), size: 30.0,),
-        // onPressed: () => Navigator.pop(context,false),),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         backgroundColor: Color(0xFFFFE0A7),
         onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => SelectDate()));
+          Navigator.pushNamed(context, '/date');
         },
         tooltip: 'Increment',
         child: Icon(Icons.add),
         elevation: 2.0,
+      ),
+      body: new Container(
+        child: new Column(
+          children: <Widget>[
+            ListTile(
+              title: Text(
+                "Select Date",
+                style: TextStyle(
+                  fontFamily: 'Comfortaa',
+                  color: Color(0xFF382E21),
+                  fontSize: 20.0,
+                ),
+              ),
+              leading: Icon(
+                Icons.calendar_today,
+                color: Color(0xFF382E21),
+              ),
+            )
+          ],
+        ),
       ),
       bottomNavigationBar: BottomAppBar(
         child: Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
-              // Row(
-              //     mainAxisSize: MainAxisSize.max,
-              //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              //     children: <Widget>[
               IconButton(
                 icon: Icon(Icons.home),
                 onPressed: () {},
@@ -62,11 +79,6 @@ class SelectDate extends StatelessWidget {
                 icon: Icon(Icons.calendar_today),
                 onPressed: () {},
               ),
-              //     ]),
-              // Row(
-              //     mainAxisSize: MainAxisSize.max,
-              //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              //     children: <Widget>[
               IconButton(
                 icon: Icon(null),
                 onPressed: () {},
@@ -80,7 +92,6 @@ class SelectDate extends StatelessWidget {
                 onPressed: () {},
               )
             ]),
-        // ]),
         shape: CircularNotchedRectangle(),
         color: Color(0xFFE08E79),
       ),

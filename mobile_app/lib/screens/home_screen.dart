@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sleep_well/screens/select_date.dart';
 
 class MyHomePage extends StatelessWidget {
   @override
@@ -10,7 +9,7 @@ class MyHomePage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Color(0xFFFFE0A7),
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => SelectDate()));
+          Navigator.pushNamed(context, '/date');
         },
         tooltip: 'Increment',
         child: Icon(Icons.add),
@@ -40,8 +39,7 @@ class MyHomePage extends StatelessWidget {
               //     children: <Widget>[
               IconButton(
                 icon: Icon(null),
-                onPressed: () {
-                },
+                onPressed: () {},
               ),
               IconButton(
                 icon: Icon(Icons.graphic_eq),
