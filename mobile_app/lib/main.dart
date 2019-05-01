@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/intro',
       routes: {
         '/intro': (context) => OnBoardingPage(),
-        '/': (context) => MyHomePage(title: 'Sleep Well Home Page')
+        '/': (context) => MyHomePage()
       },
     );
   }
