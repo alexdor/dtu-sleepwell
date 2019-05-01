@@ -4,6 +4,9 @@ import 'package:sleep_well/components/scaffold.dart';
 class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ScreenScaffold(body: Text("test"));
+    return ScreenScaffold(
+      body: Text("test"),
+      hideAppBar: true,
+    );
   }
 }
