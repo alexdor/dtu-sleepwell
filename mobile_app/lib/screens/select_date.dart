@@ -119,10 +119,37 @@ class _SelectDateState extends State<SelectDate> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
+              FlutterSlider(
+                min: 0.0,
+                max: 20.0,
+                values: [_value],
+                handlerHeight: 30.0,
+                tooltip: FlutterSliderTooltip(
+                  //dissable the number above the slider
+                  disabled: true,
+                ),
+                handler: FlutterSliderHandler(
+                    decoration: new BoxDecoration(),
+                    child: Material(
+                      type: MaterialType.transparency,
+                      child: Container(
+                        //padding: EdgeInsets.all(5),
+                        child: Icon(
+                          Icons.brightness_1,
+                          color: Color(0xFFE08E79),
+                        ),
+                      ),
+                    )),
+                trackBar: FlutterSliderTrackBar(
+                  activeTrackBarColor: Color(0xFFE08E79),
+                  //activeTrackBarHeight: 5,
+                  inactiveTrackBarColor: Colors.grey.withOpacity(0.5),
+                ),
+              ),
               Container(
                 child: Row(
                   //mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
 
                   children: <Widget>[
@@ -197,32 +224,7 @@ class _SelectDateState extends State<SelectDate> {
               //     ),
               //   ],
               // ),
-              FlutterSlider(
-                min: 0.0,
-                max: 20.0,
-                values: [_value],
-                tooltip: FlutterSliderTooltip(
-                  //dissable the number above the slider
-                  disabled: true,
-                ),
-                handler: FlutterSliderHandler(
-                    decoration: BoxDecoration(),
-                    child: Material(
-                      type: MaterialType.transparency,
-                      child: Container(
-                        //padding: EdgeInsets.all(5),
-                        child: Icon(
-                          Icons.brightness_1,
-                          color: Color(0xFFE08E79),
-                        ),
-                      ),
-                    )),
-                trackBar: FlutterSliderTrackBar(
-                  activeTrackBarColor: Color(0xFFE08E79),
-                  //activeTrackBarHeight: 5,
-                  inactiveTrackBarColor: Colors.grey.withOpacity(0.5),
-                ),
-              ),
+
               Divider(),
               ListTile(
                 title: Text(
