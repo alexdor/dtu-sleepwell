@@ -13,7 +13,7 @@ class SelectDate extends StatefulWidget {
 class _SelectDateState extends State<SelectDate> {
   DateTime _dateTime = new DateTime.now();
   double _value = 0.0;
-  Duration _duration = Duration(hours: 0, minutes: 0);
+  Duration _duration = new Duration(hours: 8, minutes: 00);
 
   Future<Null> _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
@@ -32,7 +32,7 @@ class _SelectDateState extends State<SelectDate> {
   Future<Null> _selectTime(BuildContext context) async {
     Duration resultingDuration = await showDurationPicker(
       context: context,
-      initialTime: new Duration(minutes: 30),
+      initialTime: new Duration(hours: 7, minutes: 45),
     );
     setState(() {});
     setState(() {
@@ -94,7 +94,8 @@ class _SelectDateState extends State<SelectDate> {
                 title: Text(
                   _duration == null
                       ? "Select Time"
-                      : "${_duration.toString()}", //Select Date
+                      //: "${_duration.inHours} : ${_duration.inMinutes}", //Select Date
+                      : "${_duration.toString().substring(0, 4)}h",
                   style: TextStyle(
                     fontFamily: 'Comfortaa',
                     color: Color(0xFF382E21),
@@ -108,31 +109,102 @@ class _SelectDateState extends State<SelectDate> {
                 onTap: () => _selectTime(context),
               ),
               Divider(),
-              ListTile(
-                title: Text(
-                  "How did you sleep last night?",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontFamily: 'Comfortaa',
-                    color: Color(0xFF382E21),
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                subtitle: Text(
-                  "Bad",
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    fontFamily: 'Comfortaa',
-                    color: Color(0xFF382E21),
-                    fontSize: 20.0,
-                  ),
+              Text(
+                "How did you sleep last night?",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: 'Comfortaa',
+                  color: Color(0xFF382E21),
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
+              Container(
+                child: Row(
+                  //mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+
+                  children: <Widget>[
+                    Text(
+                      "Bad",
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontFamily: 'Comfortaa',
+                        color: Color(0xFF382E21),
+                        fontSize: 20.0,
+                      ),
+                    ),
+                    IconButton(
+                      icon: Icon(null, size: 0.5),
+                      onPressed: () {},
+                    ),
+                    IconButton(
+                      icon: Icon(null, size: 0.5),
+                      onPressed: () {},
+                    ),
+                    IconButton(
+                      icon: Icon(null, size: 0.5),
+                      onPressed: () {},
+                    ),
+                    Text(
+                      "Good",
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontFamily: 'Comfortaa',
+                        color: Color(0xFF382E21),
+                        fontSize: 20.0,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              // Row(
+              //   //mainAxisSize: MainAxisSize.max,
+              //   crossAxisAlignment: CrossAxisAlignment.end,
+              //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+
+              //   children: <Widget>[
+              //     Text(
+              //       "Bad",
+              //       textAlign: TextAlign.left,
+              //       style: TextStyle(
+              //         fontFamily: 'Comfortaa',
+              //         color: Color(0xFF382E21),
+              //         fontSize: 20.0,
+              //       ),
+              //     ),
+              //     IconButton(
+              //       icon: Icon(null, size: 0.5),
+              //       onPressed: () {},
+              //     ),
+              //     IconButton(
+              //       icon: Icon(null, size: 0.5),
+              //       onPressed: () {},
+              //     ),
+              //     IconButton(
+              //       icon: Icon(null, size: 0.5),
+              //       onPressed: () {},
+              //     ),
+              //     Text(
+              //       "Good",
+              //       textAlign: TextAlign.left,
+              //       style: TextStyle(
+              //         fontFamily: 'Comfortaa',
+              //         color: Color(0xFF382E21),
+              //         fontSize: 20.0,
+              //       ),
+              //     ),
+              //   ],
+              // ),
               FlutterSlider(
                 min: 0.0,
                 max: 20.0,
                 values: [_value],
+                tooltip: FlutterSliderTooltip(
+                  //dissable the number above the slider
+                  disabled: true,
+                ),
                 handler: FlutterSliderHandler(
                     decoration: BoxDecoration(),
                     child: Material(
@@ -147,7 +219,7 @@ class _SelectDateState extends State<SelectDate> {
                     )),
                 trackBar: FlutterSliderTrackBar(
                   activeTrackBarColor: Color(0xFFE08E79),
-                  activeTrackBarHeight: 5,
+                  //activeTrackBarHeight: 5,
                   inactiveTrackBarColor: Colors.grey.withOpacity(0.5),
                 ),
               ),
