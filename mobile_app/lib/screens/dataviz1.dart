@@ -10,7 +10,7 @@ class DataViz extends StatelessWidget {
 
   factory DataViz.withSampleData() {
     return new DataViz(
-      createSampleData(),
+      _createSampleData(),
       // Disable animations for image tests.
       animate: false,
     );
@@ -42,16 +42,23 @@ class DataViz extends StatelessWidget {
                         child: new Icon(Icons.arrow_right)),
                   ]),
               Divider(),
-              new charts.BarChart(
-                seriesList,
-                animate: animate,
-                barGroupingType: charts.BarGroupingType.groupedStacked,
-              )
+              Column(children: <Widget>[
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height / 2,
+                  child: new charts.BarChart(
+                    seriesList,
+                    animate: animate,
+                    barGroupingType: charts.BarGroupingType.groupedStacked,
+                    defaultRenderer: new charts.BarRendererConfig(),
+                  ),
+                )
+              ])
             ])));
   }
 
   /// Create series list with multiple series
-  static List<charts.Series<OrdinalSales, String>> createSampleData() {
+  static List<charts.Series<OrdinalSales, String>> _createSampleData() {
     final desktopSalesDataA = [
       new OrdinalSales('2014', 5),
       new OrdinalSales('2015', 25),

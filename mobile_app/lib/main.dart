@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => MyHomePage(),
         '/diary': (context) => SleepDiary(),
         '/settings': (context) => Settings(),
-        '/monthdata': (context) => new DataViz.withSampleData(),
+        '/monthdata': (context) => DataViz.withSampleData(),
       },
     );
   }
