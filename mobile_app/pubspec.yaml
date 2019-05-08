@@ -17,6 +17,8 @@ environment:
   sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
+  flutter_xlider: ^2.4.3
+  flutter_duration_picker: "^1.0.0"
   dots_indicator: ^0.0.4
   datetime_picker_formfield: ^0.1.8
   intl: 0.15.8
