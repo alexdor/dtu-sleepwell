@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sleep_well/screens/dataviz1.dart';
+import 'package:sleep_well/screens/dataviz2.dart';
 import 'package:sleep_well/screens/home_screen.dart';
 import 'package:sleep_well/screens/onboarding_screen.dart';
 import 'package:sleep_well/screens/select_date.dart';
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
         '/diary': (context) => SleepDiary(),
         '/settings': (context) => Settings(),
         '/monthdata': (context) => DataViz.withSampleData(),
+        '/weekdata': (context) => DataViz2.withSampleData(),
       },
     );
   }

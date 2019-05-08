@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:sleep_well/components/scaffold.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 
-class DataViz extends StatelessWidget {
+class DataViz2 extends StatelessWidget {
   final List<charts.Series> seriesList;
   final bool animate;
 
-  DataViz(this.seriesList, {this.animate});
+  DataViz2(this.seriesList, {this.animate});
 
-  factory DataViz.withSampleData() {
-    return new DataViz(
+  factory DataViz2.withSampleData() {
+    return new DataViz2(
       _createSampleData(),
       // Disable animations for image tests.
       animate: false,
@@ -103,7 +103,7 @@ class DataViz extends StatelessWidget {
                     Container(
                         margin: EdgeInsets.all(25.0),
                         child: Text(
-                          "April",
+                          "April 1 - April 7",
                           style: TextStyle(
                               color: Color(0xFF382E21), fontSize: 18.0),
                         )),
@@ -116,11 +116,9 @@ class DataViz extends StatelessWidget {
                 Container(
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height / 2,
-                  child: new charts.BarChart(
+                  child: new charts.ScatterPlotChart(
                     seriesList,
                     animate: animate,
-                    barGroupingType: charts.BarGroupingType.groupedStacked,
-                    defaultRenderer: new charts.BarRendererConfig(),
                     behaviors: [
                       new charts.SeriesLegend(
                           position: charts.BehaviorPosition.bottom,
@@ -138,80 +136,71 @@ class DataViz extends StatelessWidget {
   }
 
   /// Create series list with multiple series
-  static List<charts.Series<OrdinalSales, String>> _createSampleData() {
-    final desktopSalesDataA = [
-      new OrdinalSales('Week 1', 15),
-      new OrdinalSales('Week 2', 15),
-      new OrdinalSales('Week 3', 15),
-      new OrdinalSales('Week 4', 15),
+  static List<charts.Series<DailyCollection, String>> _createSampleData() {
+    final goodData = [
+      new DailyCollection('Monday', 0, 0),
+      new DailyCollection('Tuesday', 10, 18.0),
+      new DailyCollection('Wednesday', 0, 0),
+      new DailyCollection('Thursday', 0, 0),
+      new DailyCollection('Friday', 9, 15.0),
+      new DailyCollection('Saturday', 13, 10.0),
+      new DailyCollection('Sunday', 11, 12.0),
     ];
 
-    final tableSalesDataA = [
-      new OrdinalSales('Week 1', 29),
-      new OrdinalSales('Week 2', 30),
-      new OrdinalSales('Week 3', 29),
-      new OrdinalSales('Week 4', 31),
+    final avgData = [
+      new DailyCollection('Monday', 18, 14.0),
+      new DailyCollection('Tuesday', 0, 0),
+      new DailyCollection('Wednesday', 0, 0),
+      new DailyCollection('Thursday', 5, 10.0),
+      new DailyCollection('Friday', 0, 0),
+      new DailyCollection('Saturday', 0, 0),
+      new DailyCollection('Sunday', 0, 0),
     ];
 
-    final desktopSalesDataB = [
-      new OrdinalSales('Week 1', 50),
-      new OrdinalSales('Week 2', 50),
-      new OrdinalSales('Week 3', 50),
-      new OrdinalSales('Week 4', 50),
-    ];
-
-    final tableSalesDataB = [
-      new OrdinalSales('Week 1', 54),
-      new OrdinalSales('Week 2', 51),
-      new OrdinalSales('Week 3', 48),
-      new OrdinalSales('Week 4', 55),
+    final badData = [
+      new DailyCollection('Monday', 0, 0),
+      new DailyCollection('Tuesday', 0, 0),
+      new DailyCollection('Wednesday', 20, 10.0),
+      new DailyCollection('Thursday', 0, 0),
+      new DailyCollection('Friday', 0, 0),
+      new DailyCollection('Saturday', 0, 0),
+      new DailyCollection('Sunday', 0, 0),
     ];
 
     return [
-      new charts.Series<OrdinalSales, String>(
-        id: 'Ideal °C',
-        seriesCategory: 'A',
-        domainFn: (OrdinalSales sales, _) => sales.year,
-        measureFn: (OrdinalSales sales, _) => sales.sales,
-        data: desktopSalesDataA,
-        colorFn: (_, __) => charts.MaterialPalette.green.shadeDefault,
-        fillColorFn: (_, __) =>
-            charts.MaterialPalette.green.shadeDefault.lighter,
-      ),
-      new charts.Series<OrdinalSales, String>(
-        id: '°C',
-        seriesCategory: 'A',
-        domainFn: (OrdinalSales sales, _) => sales.year,
-        measureFn: (OrdinalSales sales, _) => sales.sales,
-        data: tableSalesDataA,
-        colorFn: (_, __) => charts.MaterialPalette.green.shadeDefault,
-      ),
-      new charts.Series<OrdinalSales, String>(
-        id: 'Ideal g/m3',
-        seriesCategory: 'B',
-        domainFn: (OrdinalSales sales, _) => sales.year,
-        measureFn: (OrdinalSales sales, _) => sales.sales,
-        data: desktopSalesDataB,
-        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
-        fillColorFn: (_, __) =>
-            charts.MaterialPalette.blue.shadeDefault.lighter,
-      ),
-      new charts.Series<OrdinalSales, String>(
-        id: 'g/m3',
-        seriesCategory: 'B',
-        domainFn: (OrdinalSales sales, _) => sales.year,
-        measureFn: (OrdinalSales sales, _) => sales.sales,
-        data: tableSalesDataB,
-        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
-      ),
+      new charts.Series<DailyCollection, String>(
+          id: 'Good',
+          colorFn: (DailyCollection sales, _) =>
+              charts.MaterialPalette.green.shadeDefault,
+          domainFn: (DailyCollection sales, _) => sales.day,
+          measureFn: (DailyCollection sales, _) => sales.temperature,
+          radiusPxFn: (DailyCollection sales, _) => sales.radius,
+          data: goodData),
+      new charts.Series<DailyCollection, String>(
+          id: 'Average',
+          colorFn: (DailyCollection sales, _) =>
+              charts.MaterialPalette.yellow.shadeDefault,
+          domainFn: (DailyCollection sales, _) => sales.day,
+          measureFn: (DailyCollection sales, _) => sales.temperature,
+          radiusPxFn: (DailyCollection sales, _) => sales.radius,
+          data: avgData),
+      new charts.Series<DailyCollection, String>(
+          id: 'Bad',
+          colorFn: (DailyCollection sales, _) =>
+              charts.MaterialPalette.red.shadeDefault,
+          domainFn: (DailyCollection sales, _) => sales.day,
+          measureFn: (DailyCollection sales, _) => sales.temperature,
+          radiusPxFn: (DailyCollection sales, _) => sales.radius,
+          data: badData),
     ];
   }
 }
 
-/// Sample ordinal data type.
-class OrdinalSales {
-  final String year;
-  final int sales;
+/// Sample linear data type.
+class DailyCollection {
+  final String day;
+  final double temperature;
+  final double radius;
 
-  OrdinalSales(this.year, this.sales);
+  DailyCollection(this.day, this.temperature, this.radius);
 }
