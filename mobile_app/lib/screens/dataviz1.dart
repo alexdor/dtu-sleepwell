@@ -51,6 +51,16 @@ class DataViz extends StatelessWidget {
                     animate: animate,
                     barGroupingType: charts.BarGroupingType.groupedStacked,
                     defaultRenderer: new charts.BarRendererConfig(),
+                    behaviors: [
+                      new charts.SeriesLegend(
+                          position: charts.BehaviorPosition.end,
+                          horizontalFirst: true,
+                          desiredMaxRows: 2,
+                          cellPadding:
+                              new EdgeInsets.only(right: 4.0, bottom: 4.0),
+                          entryTextStyle: charts.TextStyleSpec(
+                              color: charts.Color.black, fontSize: 11))
+                    ],
                   ),
                 )
               ])
@@ -60,89 +70,69 @@ class DataViz extends StatelessWidget {
   /// Create series list with multiple series
   static List<charts.Series<OrdinalSales, String>> _createSampleData() {
     final desktopSalesDataA = [
-      new OrdinalSales('2014', 5),
-      new OrdinalSales('2015', 25),
-      new OrdinalSales('2016', 100),
-      new OrdinalSales('2017', 75),
+      new OrdinalSales('Week 1', 15),
+      new OrdinalSales('Week 2', 15),
+      new OrdinalSales('Week 3', 15),
+      new OrdinalSales('Week 4', 15),
     ];
 
     final tableSalesDataA = [
-      new OrdinalSales('2014', 25),
-      new OrdinalSales('2015', 50),
-      new OrdinalSales('2016', 10),
-      new OrdinalSales('2017', 20),
-    ];
-
-    final mobileSalesDataA = [
-      new OrdinalSales('2014', 10),
-      new OrdinalSales('2015', 15),
-      new OrdinalSales('2016', 50),
-      new OrdinalSales('2017', 45),
+      new OrdinalSales('Week 1', 29),
+      new OrdinalSales('Week 2', 30),
+      new OrdinalSales('Week 3', 29),
+      new OrdinalSales('Week 4', 31),
     ];
 
     final desktopSalesDataB = [
-      new OrdinalSales('2014', 5),
-      new OrdinalSales('2015', 25),
-      new OrdinalSales('2016', 100),
-      new OrdinalSales('2017', 75),
+      new OrdinalSales('Week 1', 50),
+      new OrdinalSales('Week 2', 50),
+      new OrdinalSales('Week 3', 50),
+      new OrdinalSales('Week 4', 50),
     ];
 
     final tableSalesDataB = [
-      new OrdinalSales('2014', 25),
-      new OrdinalSales('2015', 50),
-      new OrdinalSales('2016', 10),
-      new OrdinalSales('2017', 20),
-    ];
-
-    final mobileSalesDataB = [
-      new OrdinalSales('2014', 10),
-      new OrdinalSales('2015', 15),
-      new OrdinalSales('2016', 50),
-      new OrdinalSales('2017', 45),
+      new OrdinalSales('Week 1', 54),
+      new OrdinalSales('Week 2', 51),
+      new OrdinalSales('Week 3', 48),
+      new OrdinalSales('Week 4', 55),
     ];
 
     return [
       new charts.Series<OrdinalSales, String>(
-        id: 'Desktop A',
+        id: 'Ideal Temperature',
         seriesCategory: 'A',
         domainFn: (OrdinalSales sales, _) => sales.year,
         measureFn: (OrdinalSales sales, _) => sales.sales,
         data: desktopSalesDataA,
+        colorFn: (_, __) => charts.MaterialPalette.green.shadeDefault,
+        fillColorFn: (_, __) =>
+            charts.MaterialPalette.green.shadeDefault.lighter,
       ),
       new charts.Series<OrdinalSales, String>(
-        id: 'Tablet A',
+        id: 'Collected Temperature',
         seriesCategory: 'A',
         domainFn: (OrdinalSales sales, _) => sales.year,
         measureFn: (OrdinalSales sales, _) => sales.sales,
         data: tableSalesDataA,
+        colorFn: (_, __) => charts.MaterialPalette.green.shadeDefault,
       ),
       new charts.Series<OrdinalSales, String>(
-        id: 'Mobile A',
-        seriesCategory: 'A',
-        domainFn: (OrdinalSales sales, _) => sales.year,
-        measureFn: (OrdinalSales sales, _) => sales.sales,
-        data: mobileSalesDataA,
-      ),
-      new charts.Series<OrdinalSales, String>(
-        id: 'Desktop B',
+        id: 'Ideal Humidity',
         seriesCategory: 'B',
         domainFn: (OrdinalSales sales, _) => sales.year,
         measureFn: (OrdinalSales sales, _) => sales.sales,
         data: desktopSalesDataB,
+        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
+        fillColorFn: (_, __) =>
+            charts.MaterialPalette.blue.shadeDefault.lighter,
       ),
       new charts.Series<OrdinalSales, String>(
-        id: 'Tablet B',
+        id: 'Collected Humidity',
         seriesCategory: 'B',
         domainFn: (OrdinalSales sales, _) => sales.year,
         measureFn: (OrdinalSales sales, _) => sales.sales,
         data: tableSalesDataB,
-      ),
-      new charts.Series<OrdinalSales, String>(
-        id: 'Mobile B',
-        seriesCategory: 'B',
-        domainFn: (OrdinalSales sales, _) => sales.year,
-        measureFn: (OrdinalSales sales, _) => sales.sales,
-        data: mobileSalesDataB,
+        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
       ),
     ];
   }
