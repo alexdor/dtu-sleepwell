@@ -12,7 +12,6 @@ class SelectDate extends StatefulWidget {
 
 class _SelectDateState extends State<SelectDate> {
   DateTime _dateTime = new DateTime.now();
-  //TimeOfDay _timeOfDay = new TimeOfDay.now();
   double _value = 0.0;
   Duration _duration = Duration(hours: 0, minutes: 0);
 
@@ -29,19 +28,6 @@ class _SelectDateState extends State<SelectDate> {
       });
     }
   }
-
-  // Future<Null> _selectTime(BuildContext context) async {
-  //   final TimeOfDay picked = await showTimePicker(
-  //     context: context,
-  //     initialTime: _timeOfDay,
-  //   );
-  //   if (picked != null && picked != _timeOfDay) {
-  //     print('Time ${_timeOfDay.toString()}');
-  //     setState(() {
-  //       _timeOfDay = picked;
-  //     });
-  //   }
-  // }
 
   Future<Null> _selectTime(BuildContext context) async {
     Duration resultingDuration = await showDurationPicker(
