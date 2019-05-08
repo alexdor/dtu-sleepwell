@@ -20,10 +20,10 @@ class DataViz2 extends StatelessWidget {
     return ScreenScaffold(
         title: Text("Statistics"),
         body: new Container(
-            child: ListView(
-                shrinkWrap: true,
-                padding: EdgeInsets.only(left: 24.0, right: 24.0),
-                children: <Widget>[
+          child: ListView(
+            shrinkWrap: true,
+            padding: EdgeInsets.only(left: 24.0, right: 24.0),
+            children: <Widget>[
               new Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
@@ -52,10 +52,6 @@ class DataViz2 extends StatelessWidget {
                     elevation: 3.0,
                     onPressed: () {
                       Navigator.pushNamed(context, '/weekdata');
-                      //Navigator.push(
-                      //context,
-                      //MaterialPageRoute(builder: (context) => SecondIntroPage()),
-                      //);
                     },
                     shape: RoundedRectangleBorder(),
                   ),
@@ -84,17 +80,13 @@ class DataViz2 extends StatelessWidget {
                     elevation: 3.0,
                     onPressed: () {
                       Navigator.pushNamed(context, '/monthdata');
-                      //Navigator.push(
-                      //context,
-                      //MaterialPageRoute(builder: (context) => SecondIntroPage()),
-                      //);
                     },
                     shape: RoundedRectangleBorder(),
                   ),
                 ],
               ),
               Divider(),
-              Row(
+              new Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Container(
@@ -112,35 +104,42 @@ class DataViz2 extends StatelessWidget {
                         child: new Icon(Icons.arrow_right)),
                   ]),
               Divider(),
-              Column(children: <Widget>[
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height / 2,
-                  child: new charts.ScatterPlotChart(seriesList,
-                      animate: animate,
-                      behaviors: [
-                        new charts.SeriesLegend(
+              Column(
+                children: <Widget>[
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height / 2,
+                    child: new charts.ScatterPlotChart(seriesList,
+                        animate: animate,
+                        behaviors: [
+                          new charts.SeriesLegend(
                             position: charts.BehaviorPosition.bottom,
                             horizontalFirst: true,
                             desiredMaxRows: 2,
                             cellPadding:
                                 new EdgeInsets.only(right: 10.0, bottom: 20.0),
                             entryTextStyle: charts.TextStyleSpec(
-                                color: charts.Color.black, fontSize: 11)),
-                        new charts.RangeAnnotation([
-                          new charts.RangeAnnotationSegment(
-                              15, 20, charts.RangeAnnotationAxisType.measure,
-                              startLabel: 'Monday',
-                              endLabel: 'Tuesday',
-                              labelAnchor: charts.AnnotationLabelAnchor.end,
-                              color: charts.MaterialPalette.gray.shade300,
-                        ],
-                            defaultLabelPosition:
-                                charts.AnnotationLabelPosition.margin),
-                      ]),
-                )
-              ]),
-            ])));
+                                color: charts.Color.black, fontSize: 11),
+                          ),
+
+                          ///
+                          new charts.RangeAnnotation([
+                            new charts.RangeAnnotationSegment(
+                                15, 20, charts.RangeAnnotationAxisType.measure,
+                                startLabel: 'Monday',
+                                endLabel: 'Tuesday',
+                                labelAnchor: charts.AnnotationLabelAnchor.end,
+                                color: charts.MaterialPalette.gray.shade300)
+                          ],
+                              defaultLabelPosition:
+                                  charts.AnnotationLabelPosition.margin)
+                        ]),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ));
   }
 
   /// Create series list with multiple series
