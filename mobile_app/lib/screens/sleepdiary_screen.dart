@@ -28,16 +28,16 @@ class SleepDiary extends StatelessWidget {
             Divider(),
             Row(children: <Widget>[
               Container(
-                  margin: EdgeInsets.all(25.0),
+                  margin: EdgeInsets.all(20.0),
                   child: Image.asset('assets/moon_yellow.png')),
               Container(
-                  margin: EdgeInsets.all(25.0),
+                  margin: EdgeInsets.all(20.0),
                   child: Text(
                     "Sat, Apr 6",
                     style: TextStyle(color: Color(0xFF382E21), fontSize: 18.0),
                   )),
               Container(
-                  margin: EdgeInsets.all(25.0),
+                  margin: EdgeInsets.all(20.0),
                   child: Text(
                     "6h 45min",
                     style: TextStyle(color: Color(0xFF382E21), fontSize: 16.0),
@@ -46,16 +46,16 @@ class SleepDiary extends StatelessWidget {
             Divider(),
             Row(children: <Widget>[
               Container(
-                  margin: EdgeInsets.all(25.0),
+                  margin: EdgeInsets.all(20.0),
                   child: Image.asset('assets/moon_rose.png')),
               Container(
-                  margin: EdgeInsets.all(25.0),
+                  margin: EdgeInsets.all(20.0),
                   child: Text(
                     "Sun, Apr 7",
                     style: TextStyle(color: Color(0xFF382E21), fontSize: 18.0),
                   )),
               Container(
-                  margin: EdgeInsets.all(25.0),
+                  margin: EdgeInsets.all(20.0),
                   child: Text(
                     "5h 10min",
                     style: TextStyle(color: Color(0xFF382E21), fontSize: 16.0),
@@ -64,16 +64,16 @@ class SleepDiary extends StatelessWidget {
             Divider(),
             Row(children: <Widget>[
               Container(
-                  margin: EdgeInsets.all(25.0),
+                  margin: EdgeInsets.all(20.0),
                   child: Image.asset('assets/moon_blue.png')),
               Container(
-                  margin: EdgeInsets.all(25.0),
+                  margin: EdgeInsets.all(20.0),
                   child: Text(
                     "Mon, Apr 8",
                     style: TextStyle(color: Color(0xFF382E21), fontSize: 18.0),
                   )),
               Container(
-                  margin: EdgeInsets.all(25.0),
+                  margin: EdgeInsets.all(20.0),
                   child: Text(
                     "8h 15min",
                     style: TextStyle(color: Color(0xFF382E21), fontSize: 16.0),

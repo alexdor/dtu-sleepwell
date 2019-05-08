@@ -53,11 +53,15 @@ class ScreenScaffold extends StatelessWidget {
               ),
               IconButton(
                 icon: Icon(Icons.graphic_eq),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/monthdata');
+                },
               ),
               IconButton(
                 icon: Icon(Icons.settings),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/settings');
+                },
               )
             ]),
         shape: CircularNotchedRectangle(),
