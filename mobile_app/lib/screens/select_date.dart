@@ -48,8 +48,10 @@ class _SelectDateState extends State<SelectDate> {
       context: context,
       initialTime: new Duration(minutes: 30),
     );
-    Scaffold.of(context).showSnackBar(
-        new SnackBar(content: new Text("Chose duration: $resultingDuration")));
+    setState(() {});
+    setState(() {
+      _duration = resultingDuration;
+    });
   }
 
   @override
