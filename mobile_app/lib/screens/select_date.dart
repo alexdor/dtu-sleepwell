@@ -3,6 +3,8 @@ import 'package:sleep_well/components/scaffold.dart';
 import "package:intl/intl.dart";
 import 'package:flutter_xlider/flutter_xlider.dart';
 import 'package:flutter_duration_picker/flutter_duration_picker.dart';
+import 'package:sleep_well/screens/selectSymptoms.dart';
+import 'package:sleep_well/screens/symptomsQuestion.dart';
 
 class SelectDate extends StatefulWidget {
   SelectDate({Key key}) : super(key: key);
@@ -186,45 +188,6 @@ class _SelectDateState extends State<SelectDate> {
                   ],
                 ),
               ),
-              // Row(
-              //   //mainAxisSize: MainAxisSize.max,
-              //   crossAxisAlignment: CrossAxisAlignment.end,
-              //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-
-              //   children: <Widget>[
-              //     Text(
-              //       "Bad",
-              //       textAlign: TextAlign.left,
-              //       style: TextStyle(
-              //         fontFamily: 'Comfortaa',
-              //         color: Color(0xFF382E21),
-              //         fontSize: 20.0,
-              //       ),
-              //     ),
-              //     IconButton(
-              //       icon: Icon(null, size: 0.5),
-              //       onPressed: () {},
-              //     ),
-              //     IconButton(
-              //       icon: Icon(null, size: 0.5),
-              //       onPressed: () {},
-              //     ),
-              //     IconButton(
-              //       icon: Icon(null, size: 0.5),
-              //       onPressed: () {},
-              //     ),
-              //     Text(
-              //       "Good",
-              //       textAlign: TextAlign.left,
-              //       style: TextStyle(
-              //         fontFamily: 'Comfortaa',
-              //         color: Color(0xFF382E21),
-              //         fontSize: 20.0,
-              //       ),
-              //     ),
-              //   ],
-              // ),
-
               Divider(),
               ListTile(
                 title: Text(
@@ -238,73 +201,8 @@ class _SelectDateState extends State<SelectDate> {
                   ),
                 ),
               ),
-              new Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  RawMaterialButton(
-                    fillColor: Color(0xFF789CE9),
-                    splashColor: Colors.orangeAccent,
-                    child: Padding(
-                      child: Column(
-                        children: <Widget>[
-                          SizedBox(
-                            width: 100.0,
-                          ),
-                          Text(
-                            'Yes',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: 'Comfortaa',
-                              fontSize: 20.0,
-                            ),
-                          ),
-                        ],
-                      ),
-                      padding: EdgeInsets.all(10.0),
-                    ),
-                    elevation: 3.0,
-                    onPressed: () {
-                      //Navigator.push(
-                      //context,
-                      //MaterialPageRoute(builder: (context) => SecondIntroPage()),
-                      //);
-                    },
-                    shape: StadiumBorder(),
-                  ),
-                  RawMaterialButton(
-                    fillColor: Color(0xFF789CE9),
-                    splashColor: Colors.orangeAccent,
-                    child: Padding(
-                      child: Column(
-                        children: <Widget>[
-                          SizedBox(
-                            width: 100.0,
-                          ),
-                          Text(
-                            'No',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: 'Comfortaa',
-                              fontSize: 20.0,
-                            ),
-                          ),
-                        ],
-                      ),
-                      padding: EdgeInsets.all(10.0),
-                    ),
-                    elevation: 3.0,
-                    onPressed: () {
-                      //Navigator.push(
-                      //context,
-                      //MaterialPageRoute(builder: (context) => SecondIntroPage()),
-                      //);
-                    },
-                    shape: StadiumBorder(),
-                  ),
-                ],
-              ),
+              //QuestionThing(),
+              QuestionTSelectSymptoms(),
               Divider(),
               ListTile(
                 title: TextField(
