@@ -116,91 +116,85 @@ class DataViz2 extends StatelessWidget {
                 Container(
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height / 2,
-                  child: new charts.ScatterPlotChart(
-                    seriesList,
-                    animate: animate,
-                    behaviors: [
-                      new charts.SeriesLegend(
-                          position: charts.BehaviorPosition.bottom,
-                          horizontalFirst: true,
-                          desiredMaxRows: 2,
-                          cellPadding:
-                              new EdgeInsets.only(right: 20.0, bottom: 15.0),
-                          entryTextStyle: charts.TextStyleSpec(
-                              color: charts.Color.black, fontSize: 11))
-                    ],
-                  ),
+                  child: new charts.ScatterPlotChart(seriesList,
+                      animate: animate,
+                      behaviors: [
+                        new charts.SeriesLegend(
+                            position: charts.BehaviorPosition.bottom,
+                            horizontalFirst: true,
+                            desiredMaxRows: 2,
+                            cellPadding:
+                                new EdgeInsets.only(right: 10.0, bottom: 20.0),
+                            entryTextStyle: charts.TextStyleSpec(
+                                color: charts.Color.black, fontSize: 11)),
+                        new charts.RangeAnnotation([
+                          new charts.RangeAnnotationSegment(
+                              15, 20, charts.RangeAnnotationAxisType.measure,
+                              startLabel: 'Monday',
+                              endLabel: 'Tuesday',
+                              labelAnchor: charts.AnnotationLabelAnchor.end,
+                              color: charts.MaterialPalette.gray.shade300,
+                        ],
+                            defaultLabelPosition:
+                                charts.AnnotationLabelPosition.margin),
+                      ]),
                 )
               ]),
             ])));
   }
 
   /// Create series list with multiple series
-  static List<charts.Series<DailyCollection, String>> _createSampleData() {
+  static List<charts.Series<LinearSales, int>> _createSampleData() {
     final goodData = [
-      new DailyCollection('Monday', 0, 0),
-      new DailyCollection('Tuesday', 10, 18.0),
-      new DailyCollection('Wednesday', 0, 0),
-      new DailyCollection('Thursday', 0, 0),
-      new DailyCollection('Friday', 9, 15.0),
-      new DailyCollection('Saturday', 13, 10.0),
-      new DailyCollection('Sunday', 11, 12.0),
+      new LinearSales(27, 10, 18.0),
+      new LinearSales(20, 9, 15.0),
+      new LinearSales(30, 13, 10.0),
+      new LinearSales(15, 11, 12.0),
     ];
 
     final avgData = [
-      new DailyCollection('Monday', 18, 14.0),
-      new DailyCollection('Tuesday', 0, 0),
-      new DailyCollection('Wednesday', 0, 0),
-      new DailyCollection('Thursday', 5, 10.0),
-      new DailyCollection('Friday', 0, 0),
-      new DailyCollection('Saturday', 0, 0),
-      new DailyCollection('Sunday', 0, 0),
+      new LinearSales(29, 18, 14.0),
+      new LinearSales(10, 5, 10.0),
     ];
 
     final badData = [
-      new DailyCollection('Monday', 0, 0),
-      new DailyCollection('Tuesday', 0, 0),
-      new DailyCollection('Wednesday', 20, 10.0),
-      new DailyCollection('Thursday', 0, 0),
-      new DailyCollection('Friday', 0, 0),
-      new DailyCollection('Saturday', 0, 0),
-      new DailyCollection('Sunday', 0, 0),
+      new LinearSales(49, 20, 10.0),
     ];
 
     return [
-      new charts.Series<DailyCollection, String>(
+      new charts.Series<LinearSales, int>(
           id: 'Good',
-          colorFn: (DailyCollection sales, _) =>
+          colorFn: (LinearSales sales, _) =>
               charts.MaterialPalette.green.shadeDefault,
-          domainFn: (DailyCollection sales, _) => sales.day,
-          measureFn: (DailyCollection sales, _) => sales.temperature,
-          radiusPxFn: (DailyCollection sales, _) => sales.radius,
+          domainFn: (LinearSales sales, _) => sales.year,
+          measureFn: (LinearSales sales, _) => sales.revenueShare,
+          radiusPxFn: (LinearSales sales, _) => sales.radius,
           data: goodData),
-      new charts.Series<DailyCollection, String>(
+      new charts.Series<LinearSales, int>(
           id: 'Average',
-          colorFn: (DailyCollection sales, _) =>
+          colorFn: (LinearSales sales, _) =>
               charts.MaterialPalette.yellow.shadeDefault,
-          domainFn: (DailyCollection sales, _) => sales.day,
-          measureFn: (DailyCollection sales, _) => sales.temperature,
-          radiusPxFn: (DailyCollection sales, _) => sales.radius,
+          domainFn: (LinearSales sales, _) => sales.year,
+          measureFn: (LinearSales sales, _) => sales.revenueShare,
+          radiusPxFn: (LinearSales sales, _) => sales.radius,
           data: avgData),
-      new charts.Series<DailyCollection, String>(
+      new charts.Series<LinearSales, int>(
           id: 'Bad',
-          colorFn: (DailyCollection sales, _) =>
+          colorFn: (LinearSales sales, _) =>
               charts.MaterialPalette.red.shadeDefault,
-          domainFn: (DailyCollection sales, _) => sales.day,
-          measureFn: (DailyCollection sales, _) => sales.temperature,
-          radiusPxFn: (DailyCollection sales, _) => sales.radius,
+          domainFn: (LinearSales sales, _) => sales.year,
+          measureFn: (LinearSales sales, _) => sales.revenueShare,
+          radiusPxFn: (LinearSales sales, _) => sales.radius,
           data: badData),
     ];
   }
 }
 
 /// Sample linear data type.
-class DailyCollection {
-  final String day;
-  final double temperature;
+class LinearSales {
+  final int year;
+  final double revenueShare;
   final double radius;
 
-  DailyCollection(this.day, this.temperature, this.radius);
+  LinearSales(this.year, this.revenueShare, this.radius);
 }
