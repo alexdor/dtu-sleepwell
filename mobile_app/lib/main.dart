@@ -1,16 +1,25 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sleep_well/screens/dataviz1.dart';
-import 'package:sleep_well/screens/dataviz2.dart';
 import 'package:sleep_well/screens/home_screen.dart';
+import 'package:sleep_well/screens/month_viz.dart';
 import 'package:sleep_well/screens/onboarding_screen.dart';
 import 'package:sleep_well/screens/select_date.dart';
 import 'package:sleep_well/screens/settings.dart';
 import 'package:sleep_well/screens/sleepdiary_screen.dart';
+import 'package:sleep_well/screens/week_viz.dart';
 
-void main() => runApp(MyApp());
+import 'models/settings.dart';
 
-class MyApp extends StatelessWidget {
+void main() async {
+  var s = await settings();
+  return runApp(SleepWell(showIntro: s.showIntro));
+}
+
+class SleepWell extends StatelessWidget {
+  final int showIntro;
+
+  SleepWell({this.showIntro});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -18,15 +27,15 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.lightBlue,
       ),
-      initialRoute: '/intro',
+      initialRoute: showIntro == 1 ? '/intro' : '/',
       routes: {
         '/intro': (context) => OnBoardingPage(),
         '/date': (context) => SelectDate(),
         '/': (context) => MyHomePage(),
         '/diary': (context) => SleepDiary(),
         '/settings': (context) => Settings(),
-        '/monthdata': (context) => DataViz.withSampleData(),
-        '/weekdata': (context) => DataViz2.withSampleData(),
+        '/monthdata': (context) => MonthViz.withSampleData(),
+        '/weekdata': (context) => WeekViz.withSampleData(),
       },
     );
   }
