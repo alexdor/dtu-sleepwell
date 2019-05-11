@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sleep_well/helpers/enums.dart';
 
 class Text2PageSecond extends StatelessWidget {
   Widget build(BuildContext context) {
@@ -7,7 +8,7 @@ class Text2PageSecond extends StatelessWidget {
       'Our application tracks temperature and humidity to help you have refreshing mornings.',
       style: TextStyle(
         fontFamily: 'Comfortaa',
-        color: Color(0xFF382E21),
+        color: AppBlackColor,
         fontSize: 20.0,
         fontStyle: FontStyle.italic,
       ),

@@ -25,7 +25,10 @@ class ScreenScaffold extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Color(0xFFFFE0A7),
         onPressed: () {
-          Navigator.pushNamed(context, '/date');
+          Navigator.pushNamed(
+            context,
+            '/date',
+          );
         },
         tooltip: 'Increment',
         child: Icon(Icons.add),

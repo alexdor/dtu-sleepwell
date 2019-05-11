@@ -1,70 +1,88 @@
 import 'package:flutter/material.dart';
 import 'package:sleep_well/components/scaffold.dart';
+import 'package:sleep_well/helpers/enums.dart';
 
 class Settings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenScaffold(
         title: Text("Settings"),
-        body: new Container(
+        body: new SingleChildScrollView(
           child: Card(
+            color: Color(0xFFF4E6D4),
             child: Column(
               children: [
                 ListTile(
-                  title: Text('Account Settings',
-                      style: TextStyle(fontWeight: FontWeight.w500)),
+                  title: Text('See Intro', style: DefaultFontFamily),
+                  leading: Icon(
+                    Icons.info,
+                    color: AppBlackColor,
+                  ),
+                  onTap: () => Navigator.pushNamed(context, '/intro'),
+                ),
+                Divider(),
+                ListTile(
+                  title: Text('Account Settings (Under Development)',
+                      style: DefaultFontFamily),
                   leading: Icon(
                     Icons.account_box,
-                    color: Color(0xFF382E21),
+                    color: AppBlackColor,
                   ),
                 ),
                 Divider(),
                 ListTile(
-                  title: Text('Apple Health Kit',
-                      style: TextStyle(fontWeight: FontWeight.w500)),
+                  title: Text(
+                    'Apple Health Kit (Under Development)',
+                    style: DefaultFontFamily,
+                  ),
                   leading: Icon(
                     Icons.healing,
-                    color: Color(0xFF382E21),
+                    color: AppBlackColor,
                   ),
                 ),
                 Divider(),
                 ListTile(
-                  title: Text('Notifications'),
+                  title: Text('Notifications (Under Development)',
+                      style: DefaultFontFamily),
                   leading: Icon(
                     Icons.notifications,
-                    color: Color(0xFF382E21),
+                    color: AppBlackColor,
                   ),
                 ),
                 Divider(),
                 ListTile(
-                  title: Text('Getting Started'),
+                  title: Text('Getting Started (Under Development)',
+                      style: DefaultFontFamily),
                   leading: Icon(
                     Icons.help,
-                    color: Color(0xFF382E21),
+                    color: AppBlackColor,
                   ),
                 ),
                 Divider(),
                 ListTile(
-                  title: Text('Support'),
+                  title: Text('Support (Under Development)',
+                      style: DefaultFontFamily),
                   leading: Icon(
                     Icons.contact_mail,
-                    color: Color(0xFF382E21),
+                    color: AppBlackColor,
                   ),
                 ),
                 Divider(),
                 ListTile(
-                  title: Text('Terms & Conditions'),
+                  title: Text('Terms & Conditions (Under Development)',
+                      style: DefaultFontFamily),
                   leading: Icon(
                     Icons.label_important,
-                    color: Color(0xFF382E21),
+                    color: AppBlackColor,
                   ),
                 ),
                 Divider(),
                 ListTile(
-                  title: Text('Privacy Policy'),
+                  title: Text('Privacy Policy (Under Development)',
+                      style: DefaultFontFamily),
                   leading: Icon(
                     Icons.data_usage,
-                    color: Color(0xFF382E21),
+                    color: AppBlackColor,
                   ),
                 ),
               ],

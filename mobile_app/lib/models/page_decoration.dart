@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sleep_well/helpers/enums.dart';
 
 class PageDecoration {
   /// Background page color
@@ -36,21 +37,21 @@ class PageDecoration {
   final int bodyFlex;
   const PageDecoration({
     this.pageColor = const Color(0xFFF4E6D4),
-    this.progressColor = const Color(0xFFF47D30),//Colors.lightBlue,
+    this.progressColor = const Color(0xFFF47D30), //Colors.lightBlue,
     this.progressSize = const Size.fromRadius(10.0),
     this.titleTextStyle = const TextStyle(
       fontSize: 24.0,
       fontWeight: FontWeight.bold,
       fontStyle: FontStyle.italic,
-      color: Color(0xFF382E21),
+      color: AppBlackColor,
       fontFamily: 'Comfortaa',
     ),
-        textAlign: TextAlign.center,
+    textAlign: TextAlign.center,
     this.bodyTextStyle = const TextStyle(
       fontSize: 20.0,
       fontWeight: FontWeight.normal,
       fontFamily: 'Comfortaa',
-      color: Color(0xFF382E21),
+      color: AppBlackColor,
       fontStyle: FontStyle.italic,
     ),
     this.boxDecoration,

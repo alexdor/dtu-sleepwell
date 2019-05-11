@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:sleep_well/components/introduction_library.dart';
 import 'package:sleep_well/components/widgets.dart';
 import 'package:sleep_well/models/page_view_model.dart';
+import 'package:sleep_well/models/settings.dart';
 
 class OnBoardingPage extends StatelessWidget {
   const OnBoardingPage({Key key}) : super(key: key);
@@ -54,6 +55,7 @@ class OnBoardingPage extends StatelessWidget {
       ];
 
   void _onIntroEnd(context) {
+    changeShowIntro(false);
     Navigator.pushNamed(context, '/');
   }
 
