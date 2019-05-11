@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:sleep_well/components/scaffold.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:sleep_well/helpers/enums.dart';
 
-class DataViz2 extends StatelessWidget {
+class WeekViz extends StatelessWidget {
   final List<charts.Series> seriesList;
   final bool animate;
 
-  DataViz2(this.seriesList, {this.animate});
+  WeekViz(this.seriesList, {this.animate});
 
-  factory DataViz2.withSampleData() {
-    return new DataViz2(
+  factory WeekViz.withSampleData() {
+    return new WeekViz(
       _createSampleData(),
       // Disable animations for image tests.
       animate: false,
@@ -28,7 +29,7 @@ class DataViz2 extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   RawMaterialButton(
-                    fillColor: Color(0xFF446EB6),
+                    fillColor: AppBlueColor,
                     splashColor: Colors.blueGrey,
                     child: Padding(
                       child: Column(
@@ -51,12 +52,12 @@ class DataViz2 extends StatelessWidget {
                     ),
                     elevation: 3.0,
                     onPressed: () {
-                      Navigator.pushNamed(context, '/weekdata');
+                      // Navigator.pushNamed(context, '/weekdata');
                     },
                     shape: RoundedRectangleBorder(),
                   ),
                   RawMaterialButton(
-                    fillColor: Color(0xFF446EB6),
+                    fillColor: AppBlueColor,
                     splashColor: Colors.blueGrey,
                     child: Padding(
                       child: Column(
@@ -96,8 +97,8 @@ class DataViz2 extends StatelessWidget {
                         margin: EdgeInsets.all(25.0),
                         child: Text(
                           "April 1 - April 7",
-                          style: TextStyle(
-                              color: Color(0xFF382E21), fontSize: 18.0),
+                          style:
+                              TextStyle(color: AppBlackColor, fontSize: 18.0),
                         )),
                     Container(
                         margin: EdgeInsets.all(25.0),

@@ -3,8 +3,8 @@ import 'package:sleep_well/components/scaffold.dart';
 import "package:intl/intl.dart";
 import 'package:flutter_xlider/flutter_xlider.dart';
 import 'package:flutter_duration_picker/flutter_duration_picker.dart';
-import 'package:sleep_well/screens/selectSymptoms.dart';
-import 'package:sleep_well/screens/symptomsQuestion.dart';
+import 'package:sleep_well/components/selectSymptoms.dart';
+import 'package:sleep_well/helpers/enums.dart';
 
 class SelectDate extends StatefulWidget {
   SelectDate({Key key}) : super(key: key);
@@ -36,7 +36,6 @@ class _SelectDateState extends State<SelectDate> {
       context: context,
       initialTime: new Duration(hours: 7, minutes: 45),
     );
-    setState(() {});
     setState(() {
       _duration = resultingDuration;
     });
@@ -47,11 +46,11 @@ class _SelectDateState extends State<SelectDate> {
     return ScreenScaffold(
         title: Text(
           "Add Sleep Session",
-          textAlign: TextAlign.justify,
+          textAlign: TextAlign.center,
           style: TextStyle(
             fontFamily: 'Comfortaa',
-            color: Color(0xFF382E21),
-            fontSize: 20.0,
+            color: AppBlackColor,
+            fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -64,15 +63,16 @@ class _SelectDateState extends State<SelectDate> {
                 textAlign: TextAlign.left,
                 style: TextStyle(
                   fontFamily: 'Comfortaa',
-                  color: Color(0xFF382E21),
-                  fontSize: 20.0,
+                  color: AppBlackColor,
+                  fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ),
+            padding: EdgeInsets.only(right: 4),
           )
         ],
-        body: new Container(
+        body: new SingleChildScrollView(
           child: new Column(
             children: <Widget>[
               ListTile(
@@ -82,13 +82,13 @@ class _SelectDateState extends State<SelectDate> {
                       : "${DateFormat('EEEE').format(_dateTime)}, ${DateFormat('MMM').format(_dateTime)} ${_dateTime.day}", //Select Date
                   style: TextStyle(
                     fontFamily: 'Comfortaa',
-                    color: Color(0xFF382E21),
-                    fontSize: 20.0,
+                    color: AppBlackColor,
+                    fontSize: 18,
                   ),
                 ),
                 leading: Icon(
                   Icons.calendar_today,
-                  color: Color(0xFF382E21),
+                  color: AppBlackColor,
                 ),
                 onTap: () => _selectDate(context),
               ),
@@ -100,24 +100,27 @@ class _SelectDateState extends State<SelectDate> {
                       : "${_duration.toString().substring(0, 4)}h",
                   style: TextStyle(
                     fontFamily: 'Comfortaa',
-                    color: Color(0xFF382E21),
-                    fontSize: 20.0,
+                    color: AppBlackColor,
+                    fontSize: 18,
                   ),
                 ),
                 leading: Icon(
                   Icons.timer,
-                  color: Color(0xFF382E21),
+                  color: AppBlackColor,
                 ),
                 onTap: () => _selectTime(context),
               ),
-              Divider(),
+              Divider(height: 20),
+              Padding(
+                padding: EdgeInsets.only(bottom: 10),
+              ),
               Text(
                 "How did you sleep last night?",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontFamily: 'Comfortaa',
-                  color: Color(0xFF382E21),
-                  fontSize: 20.0,
+                  color: AppBlackColor,
+                  fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -160,8 +163,8 @@ class _SelectDateState extends State<SelectDate> {
                       textAlign: TextAlign.left,
                       style: TextStyle(
                         fontFamily: 'Comfortaa',
-                        color: Color(0xFF382E21),
-                        fontSize: 20.0,
+                        color: AppBlackColor,
+                        fontSize: 18,
                       ),
                     ),
                     IconButton(
@@ -181,29 +184,29 @@ class _SelectDateState extends State<SelectDate> {
                       textAlign: TextAlign.left,
                       style: TextStyle(
                         fontFamily: 'Comfortaa',
-                        color: Color(0xFF382E21),
-                        fontSize: 20.0,
+                        color: AppBlackColor,
+                        fontSize: 18,
                       ),
                     ),
                   ],
                 ),
               ),
-              Divider(),
+              Divider(height: 20),
               ListTile(
                 title: Text(
                   "Did you have any symptoms?",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontFamily: 'Comfortaa',
-                    color: Color(0xFF382E21),
-                    fontSize: 20.0,
+                    color: AppBlackColor,
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
               //QuestionThing(),
               QuestionTSelectSymptoms(),
-              Divider(),
+              Divider(height: 20),
               ListTile(
                 title: TextField(
                   decoration: InputDecoration(
@@ -213,7 +216,7 @@ class _SelectDateState extends State<SelectDate> {
                 ),
                 leading: Icon(
                   Icons.chat_bubble_outline,
-                  color: Color(0xFF382E21),
+                  color: AppBlackColor,
                 ),
               )
             ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sleep_well/components/scaffold.dart';
+import 'package:sleep_well/helpers/enums.dart';
 
 class SleepDiary extends StatelessWidget {
   @override
@@ -19,7 +20,7 @@ class SleepDiary extends StatelessWidget {
                   margin: EdgeInsets.all(25.0),
                   child: Text(
                     "April",
-                    style: TextStyle(color: Color(0xFF382E21), fontSize: 22.0),
+                    style: TextStyle(color: AppBlackColor, fontSize: 22.0),
                   )),
               Container(
                   margin: EdgeInsets.all(25.0),
@@ -34,13 +35,13 @@ class SleepDiary extends StatelessWidget {
                   margin: EdgeInsets.all(20.0),
                   child: Text(
                     "Sat, Apr 6",
-                    style: TextStyle(color: Color(0xFF382E21), fontSize: 18.0),
+                    style: TextStyle(color: AppBlackColor, fontSize: 18.0),
                   )),
               Container(
                   margin: EdgeInsets.all(20.0),
                   child: Text(
                     "6h 45min",
-                    style: TextStyle(color: Color(0xFF382E21), fontSize: 16.0),
+                    style: TextStyle(color: AppBlackColor, fontSize: 16.0),
                   )),
             ]),
             Divider(),
@@ -52,13 +53,13 @@ class SleepDiary extends StatelessWidget {
                   margin: EdgeInsets.all(20.0),
                   child: Text(
                     "Sun, Apr 7",
-                    style: TextStyle(color: Color(0xFF382E21), fontSize: 18.0),
+                    style: TextStyle(color: AppBlackColor, fontSize: 18.0),
                   )),
               Container(
                   margin: EdgeInsets.all(20.0),
                   child: Text(
                     "5h 10min",
-                    style: TextStyle(color: Color(0xFF382E21), fontSize: 16.0),
+                    style: TextStyle(color: AppBlackColor, fontSize: 16.0),
                   )),
             ]),
             Divider(),
@@ -70,13 +71,13 @@ class SleepDiary extends StatelessWidget {
                   margin: EdgeInsets.all(20.0),
                   child: Text(
                     "Mon, Apr 8",
-                    style: TextStyle(color: Color(0xFF382E21), fontSize: 18.0),
+                    style: TextStyle(color: AppBlackColor, fontSize: 18.0),
                   )),
               Container(
                   margin: EdgeInsets.all(20.0),
                   child: Text(
                     "8h 15min",
-                    style: TextStyle(color: Color(0xFF382E21), fontSize: 16.0),
+                    style: TextStyle(color: AppBlackColor, fontSize: 16.0),
                   )),
             ])
           ])),

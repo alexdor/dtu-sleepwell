@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sleep_well/helpers/enums.dart';
 
 class QuestionTSelectSymptoms extends StatefulWidget {
   QuestionTSelectSymptoms({Key key}) : super(key: key);
@@ -12,6 +13,7 @@ class _QuestionTSelectSymptoms extends State<QuestionTSelectSymptoms> {
   Color _myColorFreezing = Color(0xFF789CE9);
   Color _myColorSweating = Color(0xFF789CE9);
   Widget build(BuildContext context) {
+    double _width = MediaQuery.of(context).size.width * 2 / 5;
     return new Container(
       child: new Column(
         children: <Widget>[
@@ -25,7 +27,7 @@ class _QuestionTSelectSymptoms extends State<QuestionTSelectSymptoms> {
                   child: Column(
                     children: <Widget>[
                       SizedBox(
-                        width: 150.0,
+                        width: _width,
                       ),
                       Text(
                         'Headache',
@@ -33,7 +35,7 @@ class _QuestionTSelectSymptoms extends State<QuestionTSelectSymptoms> {
                         style: TextStyle(
                           color: Colors.white,
                           fontFamily: 'Comfortaa',
-                          fontSize: 20.0,
+                          fontSize: 18,
                         ),
                       ),
                     ],
@@ -44,7 +46,7 @@ class _QuestionTSelectSymptoms extends State<QuestionTSelectSymptoms> {
                 onPressed: () {
                   setState(() {
                     if (_myColorHeadache == Color(0xFF789CE9)) {
-                      _myColorHeadache = Color(0xFF446EB6);
+                      _myColorHeadache = AppBlueColor;
                     } else {
                       _myColorHeadache = Color(0xFF789CE9);
                     }
@@ -61,7 +63,7 @@ class _QuestionTSelectSymptoms extends State<QuestionTSelectSymptoms> {
                   child: Column(
                     children: <Widget>[
                       SizedBox(
-                        width: 150.0,
+                        width: _width,
                       ),
                       Text(
                         'Nightmares',
@@ -69,7 +71,7 @@ class _QuestionTSelectSymptoms extends State<QuestionTSelectSymptoms> {
                         style: TextStyle(
                           color: Colors.white,
                           fontFamily: 'Comfortaa',
-                          fontSize: 20.0,
+                          fontSize: 18,
                         ),
                       ),
                     ],
@@ -80,7 +82,7 @@ class _QuestionTSelectSymptoms extends State<QuestionTSelectSymptoms> {
                 onPressed: () {
                   setState(() {
                     if (_myColorNightmares == Color(0xFF789CE9)) {
-                      _myColorNightmares = Color(0xFF446EB6);
+                      _myColorNightmares = AppBlueColor;
                     } else {
                       _myColorNightmares = Color(0xFF789CE9);
                     }
@@ -100,7 +102,7 @@ class _QuestionTSelectSymptoms extends State<QuestionTSelectSymptoms> {
                   child: Column(
                     children: <Widget>[
                       SizedBox(
-                        width: 150.0,
+                        width: _width,
                       ),
                       Text(
                         'Freezing',
@@ -108,7 +110,7 @@ class _QuestionTSelectSymptoms extends State<QuestionTSelectSymptoms> {
                         style: TextStyle(
                           color: Colors.white,
                           fontFamily: 'Comfortaa',
-                          fontSize: 20.0,
+                          fontSize: 18,
                         ),
                       ),
                     ],
@@ -119,7 +121,7 @@ class _QuestionTSelectSymptoms extends State<QuestionTSelectSymptoms> {
                 onPressed: () {
                   setState(() {
                     if (_myColorFreezing == Color(0xFF789CE9)) {
-                      _myColorFreezing = Color(0xFF446EB6);
+                      _myColorFreezing = AppBlueColor;
                     } else {
                       _myColorFreezing = Color(0xFF789CE9);
                     }
@@ -136,7 +138,7 @@ class _QuestionTSelectSymptoms extends State<QuestionTSelectSymptoms> {
                   child: Column(
                     children: <Widget>[
                       SizedBox(
-                        width: 150.0,
+                        width: _width,
                       ),
                       Text(
                         'Sweating',
@@ -144,7 +146,7 @@ class _QuestionTSelectSymptoms extends State<QuestionTSelectSymptoms> {
                         style: TextStyle(
                           color: Colors.white,
                           fontFamily: 'Comfortaa',
-                          fontSize: 20.0,
+                          fontSize: 18,
                         ),
                       ),
                     ],
@@ -155,7 +157,7 @@ class _QuestionTSelectSymptoms extends State<QuestionTSelectSymptoms> {
                 onPressed: () {
                   setState(() {
                     if (_myColorSweating == Color(0xFF789CE9)) {
-                      _myColorSweating = Color(0xFF446EB6);
+                      _myColorSweating = AppBlueColor;
                     } else {
                       _myColorSweating = Color(0xFF789CE9);
                     }
