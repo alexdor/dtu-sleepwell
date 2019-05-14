@@ -21,7 +21,6 @@ func init() {
 
 func influxDBClient() (client.Client, error) {
 	return client.NewHTTPClient(client.HTTPConfig{
-		// Addr: "http://influxdb:8086",
 		Addr: addr,
 		// Username: username,
 		// Password: password,
