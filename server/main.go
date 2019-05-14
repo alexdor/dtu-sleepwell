@@ -9,10 +9,12 @@ import (
 	"strings"
 	"time"
 
+	"github.com/NYTimes/gziphandler"
 	"github.com/alexdor/sleep_well/server/helpers"
 	"github.com/alexdor/sleep_well/server/influx"
 	"github.com/jinzhu/now"
 	"github.com/julienschmidt/httprouter"
+	"github.com/rs/cors"
 )
 
 type ErrorRes struct {
@@ -30,8 +32,8 @@ func main() {
 	router.GET("/data", Index)
 	router.GET("/duration", GetDuration)
 	router.POST("/esp", HandleNewData)
-
-	log.Fatal(http.ListenAndServe(":8000", router))
+	corsHandler := cors.Default().Handler(router)
+	log.Fatal(http.ListenAndServe("0.0.0.0:8000", gziphandler.GzipHandler(corsHandler)))
 }
 
 func GetDuration(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
