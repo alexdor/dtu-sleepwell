@@ -1,16 +1,12 @@
-# sleep_well
+# Sleep Well Repository
 
-A new Flutter project.
+This repository is spitted into 3 subprojects. Each project is placed in it's own folder.
 
-## Getting Started
+A brief explanation of the folder structure:
 
-This project is a starting point for a Flutter application.
+* esp8266: This folder contains the code for the esp8266 (this is the microchip we use to gather the humidity and the temperature of a space)
+* mobile_app: This folder includes the flutter project that build the mobile app
+* server: This folder contains the serverside code that is required to store the data that the esp8266 sends. It also serves the data to the mobile app so it can display the visualizations.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://flutter.io/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.io/docs/cookbook)
-
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.io/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+Please read the README.md file of each folder for more information on each project.
