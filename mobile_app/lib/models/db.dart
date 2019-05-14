@@ -6,7 +6,7 @@ import 'package:path_provider/path_provider.dart';
 // singleton class to manage the database
 class DatabaseHelper {
   // This is the actual database filename that is saved in the docs directory.
-  static final _databaseName = "MyDatabase.db";
+  static final _databaseName = "sleepwell.db";
   // Increment this version when you need to change the schema.
   static final _databaseVersion = 1;
 
@@ -28,8 +28,11 @@ class DatabaseHelper {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     String path = join(documentsDirectory.path, _databaseName);
     // Open the database. Can also add an onUpdate callback parameter.
-    return await openDatabase(path,
-        version: _databaseVersion, onCreate: _onCreate);
+    return await openDatabase(
+      path,
+      version: _databaseVersion,
+      onCreate: _onCreate,
+    );
   }
 
   // SQL string to create the database
@@ -37,16 +40,8 @@ class DatabaseHelper {
     await db.execute(
       "CREATE TABLE settings(id INTEGER PRIMARY KEY, showIntro INTEGER)",
     );
-    // await db.execute('''
-    //           CREATE TABLE $tableWords (
-    //             $columnId INTEGER PRIMARY KEY,
-    //             $columnWord TEXT NOT NULL,
-    //             $columnFrequency INTEGER NOT NULL
-    //           )
-    //           ''');
-  }
 
-  // TODO: queryAllWords()
-  // TODO: delete(int id)
-  // TODO: update(Word word)
+    await db.execute(
+        "CREATE TABLE recordings(id INTEGER PRIMARY KEY NOT NULL, rating REAL NOT NULL, headace INTEGER,freezing INTEGER, nightmares INTEGER, sweating INTEGER, notes TEXT, duration INTEGER NOT NULL, date INTEGER NOT NULL)");
+  }
 }

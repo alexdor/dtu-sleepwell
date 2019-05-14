@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:sleep_well/screens/home_screen.dart';
 import 'package:sleep_well/screens/month_viz.dart';
 import 'package:sleep_well/screens/onboarding_screen.dart';
-import 'package:sleep_well/screens/select_date.dart';
+import 'package:sleep_well/screens/record_sleep.dart';
 import 'package:sleep_well/screens/settings.dart';
 import 'package:sleep_well/screens/sleepdiary_screen.dart';
 import 'package:sleep_well/screens/week_viz.dart';
@@ -30,8 +30,8 @@ class SleepWell extends StatelessWidget {
       initialRoute: showIntro == 1 ? '/intro' : '/',
       routes: {
         '/intro': (context) => OnBoardingPage(),
-        '/date': (context) => SelectDate(),
-        '/': (context) => MyHomePage(),
+        '/date': (context) => RecordSleep(),
+        '/': (context) => HomePage(),
         '/diary': (context) => SleepDiary(),
         '/settings': (context) => Settings(),
         '/monthdata': (context) => MonthViz.withSampleData(),

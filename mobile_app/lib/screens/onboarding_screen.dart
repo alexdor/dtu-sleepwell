@@ -7,7 +7,6 @@ import 'package:sleep_well/models/settings.dart';
 
 class OnBoardingPage extends StatelessWidget {
   const OnBoardingPage({Key key}) : super(key: key);
-  final bgColor = const Color(0xFFF4E6D4);
 
   List<PageViewModel> _buildPages() => [
         PageViewModel(

@@ -36,7 +36,7 @@ class PageDecoration {
   /// Flex ratio of the body
   final int bodyFlex;
   const PageDecoration({
-    this.pageColor = const Color(0xFFF4E6D4),
+    this.pageColor = BackgroundColor,
     this.progressColor = const Color(0xFFF47D30), //Colors.lightBlue,
     this.progressSize = const Size.fromRadius(10.0),
     this.titleTextStyle = const TextStyle(

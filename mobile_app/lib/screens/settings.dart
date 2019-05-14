@@ -9,13 +9,14 @@ class Settings extends StatelessWidget {
         title: Text("Settings"),
         body: new SingleChildScrollView(
           child: Card(
-            color: Color(0xFFF4E6D4),
+            color: BackgroundColor,
             child: Column(
               children: [
+                Divider(),
                 ListTile(
-                  title: Text('See Intro', style: DefaultFontFamily),
+                  title: Text('Getting Started', style: DefaultFontFamily),
                   leading: Icon(
-                    Icons.info,
+                    Icons.help,
                     color: AppBlackColor,
                   ),
                   onTap: () => Navigator.pushNamed(context, '/intro'),
@@ -46,15 +47,6 @@ class Settings extends StatelessWidget {
                       style: DefaultFontFamily),
                   leading: Icon(
                     Icons.notifications,
-                    color: AppBlackColor,
-                  ),
-                ),
-                Divider(),
-                ListTile(
-                  title: Text('Getting Started (Under Development)',
-                      style: DefaultFontFamily),
-                  leading: Icon(
-                    Icons.help,
                     color: AppBlackColor,
                   ),
                 ),

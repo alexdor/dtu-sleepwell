@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sleep_well/helpers/enums.dart';
 
 class ScreenScaffold extends StatelessWidget {
   final Widget body;
@@ -12,12 +13,12 @@ class ScreenScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF4E6D4),
+      backgroundColor: BackgroundColor,
       appBar: hideAppBar != null && hideAppBar
           ? null
           : AppBar(
               automaticallyImplyLeading: true,
-              backgroundColor: Color(0xFFE08E79),
+              backgroundColor: SecondayBackgroundColor,
               actions: actions,
               title: title,
             ),
@@ -54,7 +55,12 @@ class ScreenScaffold extends StatelessWidget {
               ),
               IconButton(
                 icon: Icon(null),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    '/date',
+                  );
+                },
               ),
               IconButton(
                 icon: Icon(Icons.graphic_eq),
@@ -70,7 +76,7 @@ class ScreenScaffold extends StatelessWidget {
               )
             ]),
         shape: CircularNotchedRectangle(),
-        color: Color(0xFFE08E79),
+        color: SecondayBackgroundColor,
       ),
     );
   }

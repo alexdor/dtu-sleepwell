@@ -3,30 +3,82 @@ import 'package:sleep_well/components/scaffold.dart';
 import "package:intl/intl.dart";
 import 'package:flutter_xlider/flutter_xlider.dart';
 import 'package:flutter_duration_picker/flutter_duration_picker.dart';
-import 'package:sleep_well/components/selectSymptoms.dart';
+import 'package:sleep_well/components/select_symptoms.dart';
+import 'package:sleep_well/components/yes_or_no.dart';
 import 'package:sleep_well/helpers/enums.dart';
+import 'package:sleep_well/models/symptoms.dart';
 
-class SelectDate extends StatefulWidget {
-  SelectDate({Key key}) : super(key: key);
+class RecordSleep extends StatefulWidget {
+  RecordSleep({Key key}) : super(key: key);
 
-  _SelectDateState createState() => _SelectDateState();
+  _RecordSleepState createState() => _RecordSleepState();
 }
 
-class _SelectDateState extends State<SelectDate> {
+class _RecordSleepState extends State<RecordSleep> {
   DateTime _dateTime = new DateTime.now();
   double _value = 0.0;
   Duration _duration = new Duration(hours: 8, minutes: 00);
+  bool didYouHadSymptoms;
+  RecordingModel recording = RecordingModel();
+
+  @override
+  initState() {
+    super.initState();
+    recording.date = _dateTime.microsecondsSinceEpoch;
+    recording.duration = _duration.inSeconds;
+    recording.rating = 0;
+  }
+
+  void setSymptomsToYes() {
+    this.setState(() => didYouHadSymptoms = true);
+  }
+
+  void setSymptomsToNo() {
+    this.setState(() => didYouHadSymptoms = false);
+  }
+
+  void setHeadaceSymptoms() {
+    if (recording.headace != null && recording.headace == 1) {
+      this.setState(() => recording.headace = 0);
+      return;
+    }
+    this.setState(() => recording.headace = 1);
+  }
+
+  void setNightmaresSymptoms() {
+    if (recording.nightmares != null && recording.nightmares == 1) {
+      this.setState(() => recording.nightmares = 0);
+      return;
+    }
+    this.setState(() => recording.nightmares = 1);
+  }
+
+  void setFreezingSymptoms() {
+    if (recording.freezing != null && recording.freezing == 1) {
+      this.setState(() => recording.freezing = 0);
+      return;
+    }
+    this.setState(() => recording.freezing = 1);
+  }
+
+  void setSweatingSymptoms() {
+    if (recording.sweating != null && recording.sweating == 1) {
+      this.setState(() => recording.sweating = 0);
+      return;
+    }
+    this.setState(() => recording.sweating = 1);
+  }
 
   Future<Null> _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
         context: context,
         initialDate: _dateTime,
         firstDate: DateTime(2015, 8),
-        lastDate: DateTime(2101));
+        lastDate: DateTime.now());
     if (picked != null && picked != _dateTime) {
-      print('Date ${_dateTime.toString()}');
       setState(() {
         _dateTime = picked;
+        recording.date = picked.microsecondsSinceEpoch;
       });
     }
   }
@@ -36,8 +88,12 @@ class _SelectDateState extends State<SelectDate> {
       context: context,
       initialTime: new Duration(hours: 7, minutes: 45),
     );
+    if (resultingDuration == null) {
+      return;
+    }
     setState(() {
       _duration = resultingDuration;
+      recording.duration = resultingDuration.inSeconds;
     });
   }
 
@@ -58,18 +114,24 @@ class _SelectDateState extends State<SelectDate> {
           Container(
             child: Align(
               alignment: Alignment.centerLeft,
-              child: Text(
-                "Save",
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                  fontFamily: 'Comfortaa',
-                  color: AppBlackColor,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
+              child: FlatButton(
+                child: Text(
+                  "Save",
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    fontFamily: 'Comfortaa',
+                    color: AppBlackColor,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
+                // padding: EdgeInsets.only(right: 4),
+                onPressed: () async {
+                  await recording.create();
+                  Navigator.pushNamed(context, '/');
+                },
               ),
             ),
-            padding: EdgeInsets.only(right: 4),
           )
         ],
         body: new SingleChildScrollView(
@@ -111,24 +173,19 @@ class _SelectDateState extends State<SelectDate> {
                 onTap: () => _selectTime(context),
               ),
               Divider(height: 20),
-              Padding(
-                padding: EdgeInsets.only(bottom: 10),
-              ),
-              Text(
-                "How did you sleep last night?",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontFamily: 'Comfortaa',
-                  color: AppBlackColor,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
+              Title(
+                text: "How did you sleep last night?",
               ),
               FlutterSlider(
                 min: 0.0,
-                max: 20.0,
+                max: 100.0,
                 values: [_value],
                 handlerHeight: 30.0,
+                onDragCompleted: (handlerIndex, lowerValue, upperValue) => {
+                      setState(() {
+                        recording.rating = lowerValue;
+                      })
+                    },
                 tooltip: FlutterSliderTooltip(
                   //dissable the number above the slider
                   disabled: true,
@@ -141,12 +198,12 @@ class _SelectDateState extends State<SelectDate> {
                         //padding: EdgeInsets.all(5),
                         child: Icon(
                           Icons.brightness_1,
-                          color: Color(0xFFE08E79),
+                          color: SecondayBackgroundColor,
                         ),
                       ),
                     )),
                 trackBar: FlutterSliderTrackBar(
-                  activeTrackBarColor: Color(0xFFE08E79),
+                  activeTrackBarColor: SecondayBackgroundColor,
                   //activeTrackBarHeight: 5,
                   inactiveTrackBarColor: Colors.grey.withOpacity(0.5),
                 ),
@@ -192,23 +249,34 @@ class _SelectDateState extends State<SelectDate> {
                 ),
               ),
               Divider(height: 20),
-              ListTile(
-                title: Text(
-                  "Did you have any symptoms?",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontFamily: 'Comfortaa',
-                    color: AppBlackColor,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
+              didYouHadSymptoms != null && didYouHadSymptoms
+                  ? Title(
+                      text: "Please select your symptoms",
+                    )
+                  : Title(
+                      text: "Did you have any symptoms?",
+                    ),
               //QuestionThing(),
-              QuestionTSelectSymptoms(),
+              didYouHadSymptoms != null && didYouHadSymptoms
+                  ? RecordSymptoms(
+                      model: recording,
+                      onHeadachePress: setHeadaceSymptoms,
+                      onFreezingPress: setFreezingSymptoms,
+                      onNightmaresPress: setNightmaresSymptoms,
+                      onSweatingPress: setSweatingSymptoms,
+                    )
+                  : YesOrNo(
+                      yesPress: setSymptomsToYes,
+                      yes: didYouHadSymptoms != null && didYouHadSymptoms,
+                      noPress: setSymptomsToNo,
+                      no: didYouHadSymptoms != null && !didYouHadSymptoms),
               Divider(height: 20),
               ListTile(
                 title: TextField(
+                  autocorrect: true,
+                  onChanged: (String change) => {
+                        this.setState(() => {recording.notes = change})
+                      },
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     hintText: 'Enter a dream note...',
@@ -222,5 +290,23 @@ class _SelectDateState extends State<SelectDate> {
             ],
           ),
         ));
+  }
+}
+
+final TextStyle _titleStyle = TextStyle(
+  fontFamily: 'Comfortaa',
+  color: AppBlackColor,
+  fontSize: 18,
+  fontWeight: FontWeight.bold,
+);
+
+class Title extends StatelessWidget {
+  final String text;
+  const Title({Key key, this.text}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+        title: Text(text, textAlign: TextAlign.center, style: _titleStyle));
   }
 }
