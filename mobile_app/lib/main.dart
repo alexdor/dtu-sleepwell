@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sleep_well/helpers/enums.dart';
 import 'package:sleep_well/screens/home_screen.dart';
-import 'package:sleep_well/screens/month_viz.dart';
 import 'package:sleep_well/screens/onboarding_screen.dart';
 import 'package:sleep_well/screens/record_sleep.dart';
 import 'package:sleep_well/screens/settings.dart';
 import 'package:sleep_well/screens/sleepdiary_screen.dart';
-import 'package:sleep_well/screens/week_viz.dart';
+import 'package:sleep_well/screens/vizualization_screen.dart';
 
 import 'models/settings.dart';
 
@@ -34,8 +34,12 @@ class SleepWell extends StatelessWidget {
         '/': (context) => HomePage(),
         '/diary': (context) => SleepDiary(),
         '/settings': (context) => Settings(),
-        '/monthdata': (context) => MonthViz.withSampleData(),
-        '/weekdata': (context) => WeekViz.withSampleData(),
+        '/monthdata': (context) => VizualizationScreen(
+              type: VisualizationTypes.MONTH,
+            ),
+        '/weekdata': (context) => VizualizationScreen(
+              type: VisualizationTypes.WEEK,
+            ),
       },
     );
   }

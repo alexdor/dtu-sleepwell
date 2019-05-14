@@ -10,6 +10,7 @@ class ScreenScaffold extends StatelessWidget {
   const ScreenScaffold(
       {Key key, this.body, this.hideAppBar, this.title, this.actions})
       : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

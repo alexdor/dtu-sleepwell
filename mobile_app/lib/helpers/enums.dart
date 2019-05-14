@@ -14,3 +14,5 @@ final DefaultFontFamily = new TextStyle(
 );
 
 const APIURL = 'https://sleep-well.cdrproject.com/';
+
+enum VisualizationTypes { MONTH, WEEK }

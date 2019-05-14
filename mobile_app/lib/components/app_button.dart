@@ -11,6 +11,7 @@ class AppButton extends StatelessWidget {
   final bool active;
   final double width;
   final Function onPress;
+  final EdgeInsets padding;
 
   const AppButton(
       {Key key,
@@ -19,7 +20,8 @@ class AppButton extends StatelessWidget {
       this.fillColor = buttonActiveColor,
       this.text,
       this.width,
-      this.onPress})
+      this.onPress,
+      this.padding})
       : super(key: key);
 
   @override
@@ -44,7 +46,7 @@ class AppButton extends StatelessWidget {
             ),
           ],
         ),
-        padding: EdgeInsets.all(10.0),
+        padding: padding == null ? EdgeInsets.all(10.0) : padding,
       ),
       elevation: 3.0,
       onPressed: () {
