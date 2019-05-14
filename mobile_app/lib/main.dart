@@ -23,6 +23,7 @@ class SleepWell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Sleep Well',
       theme: ThemeData(
         primarySwatch: Colors.lightBlue,
