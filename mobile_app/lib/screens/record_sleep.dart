@@ -111,30 +111,6 @@ class _RecordSleepState extends State<RecordSleep> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        actions: <Widget>[
-          Container(
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: FlatButton(
-                child: Text(
-                  "Save",
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    fontFamily: 'Comfortaa',
-                    color: AppBlackColor,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                // padding: EdgeInsets.only(right: 4),
-                onPressed: () async {
-                  await recording.create();
-                  Navigator.pushNamed(context, '/');
-                },
-              ),
-            ),
-          )
-        ],
         body: new SingleChildScrollView(
           child: new Column(
             children: <Widget>[
