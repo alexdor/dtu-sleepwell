@@ -34,10 +34,10 @@ class _VisualizationScreenState extends State<VisualizationScreen> {
   @override
   void initState() {
     super.initState();
-    // Prefetch all the data
-    fetchData(VisualizationTypes.WEEK);
-    fetchData(VisualizationTypes.MONTH);
-    fetchSymptoms();
+    fetchData(null);
+    if (type == VisualizationTypes.WEEK) {
+      fetchSymptoms();
+    }
   }
 
   void fetchSymptoms() async {
@@ -57,7 +57,6 @@ class _VisualizationScreenState extends State<VisualizationScreen> {
   }
 
   void fetchData(VisualizationTypes t) async {
-    print(t);
     if (t == null) {
       t = type;
     }
@@ -129,7 +128,7 @@ class _VisualizationScreenState extends State<VisualizationScreen> {
             child: ListView(
                 shrinkWrap: true,
                 padding: EdgeInsets.symmetric(
-                    horizontal: MediaQuery.of(context).size.width * 0.08),
+                    horizontal: MediaQuery.of(context).size.width * 0.04),
                 children: <Widget>[
               VisualizationHeader(vizType: type, setType: setType),
               error != null ? ErrorSleepWell(error: error) : Text(""),

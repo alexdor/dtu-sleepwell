@@ -1,8 +1,11 @@
+import 'package:charts_common/common.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/cupertino.dart';
 import 'package:sleep_well/helpers/enums.dart';
 import 'package:sleep_well/models/api_response.dart';
 import 'package:sleep_well/models/symptoms.dart';
+
+final _titleStyle = TextStyleSpec(fontSize: 12, fontFamily: "Comfortaa");
 
 class ScatterPlot extends StatelessWidget {
   final List<charts.Series> seriesList;
@@ -12,31 +15,57 @@ class ScatterPlot extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height / 2,
-      child:
-          new charts.ScatterPlotChart(seriesList, animate: animate, behaviors: [
-        new charts.SeriesLegend(
-          position: charts.BehaviorPosition.bottom,
-          horizontalFirst: true,
-          desiredMaxRows: 2,
-          cellPadding: new EdgeInsets.only(right: 10.0, bottom: 20.0),
-          entryTextStyle:
-              charts.TextStyleSpec(color: charts.Color.black, fontSize: 11),
-        ),
-
-        ///
-        new charts.RangeAnnotation([
-          new charts.RangeAnnotationSegment(
-              15, 20, charts.RangeAnnotationAxisType.measure,
-              startLabel: 'Monday',
-              endLabel: 'Tuesday',
-              labelAnchor: charts.AnnotationLabelAnchor.end,
-              color: charts.MaterialPalette.gray.shade300)
-        ], defaultLabelPosition: charts.AnnotationLabelPosition.margin)
-      ]),
-    );
+    return Column(children: <Widget>[
+      Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height / 2,
+        child: new charts.ScatterPlotChart(seriesList,
+            animate: animate,
+            primaryMeasureAxis: charts.AxisSpec(showAxisLine: true),
+            behaviors: [
+              new charts.SeriesLegend(
+                position: charts.BehaviorPosition.bottom,
+                horizontalFirst: true,
+                entryTextStyle: charts.TextStyleSpec(
+                    color: charts.Color.black, fontSize: 11),
+              ),
+              new charts.RangeAnnotation([
+                new charts.RangeAnnotationSegment(
+                    15, 20, charts.RangeAnnotationAxisType.measure,
+                    startLabel: 'Min recommended temperature',
+                    endLabel: 'Max recommended temperature',
+                    labelAnchor: charts.AnnotationLabelAnchor.end,
+                    color: charts.MaterialPalette.gray.shade300)
+              ], defaultLabelPosition: charts.AnnotationLabelPosition.outside),
+              new charts.ChartTitle('Humidity (g/m\u00B3)',
+                  titleStyleSpec: _titleStyle,
+                  behaviorPosition: charts.BehaviorPosition.bottom,
+                  titleOutsideJustification:
+                      charts.OutsideJustification.middleDrawArea),
+              new charts.ChartTitle('Temperature (\u2103)',
+                  titleStyleSpec: _titleStyle,
+                  behaviorPosition: charts.BehaviorPosition.start,
+                  titleOutsideJustification:
+                      charts.OutsideJustification.middleDrawArea),
+            ]),
+      ),
+      Column(
+        children: <Widget>[
+          Padding(
+            padding:
+                EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.05),
+          ),
+          Text(
+            "Footnote:",
+            style: FootnoteStyle,
+          ),
+          Text(
+            "The colors correspond to your rating of each sleep",
+            style: FootnoteStyle,
+          ),
+        ],
+      )
+    ]);
   }
 
   factory ScatterPlot.withDataTransform(

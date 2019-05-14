@@ -34,9 +34,8 @@ class BarChart extends StatelessWidget {
             new charts.SeriesLegend(
                 position: charts.BehaviorPosition.bottom,
                 horizontalFirst: true,
-                desiredMaxRows: 4,
                 outsideJustification: charts.OutsideJustification.middle,
-                cellPadding: new EdgeInsets.only(right: 8, bottom: 15.0),
+                // cellPadding: new EdgeInsets.only(right: 8, bottom: 15.0),
                 entryTextStyle: charts.TextStyleSpec(
                     color: charts.Color.black, fontSize: 11))
           ],

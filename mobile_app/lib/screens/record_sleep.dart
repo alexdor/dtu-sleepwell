@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sleep_well/components/app_button.dart';
 import 'package:sleep_well/components/scaffold.dart';
 import "package:intl/intl.dart";
 import 'package:flutter_xlider/flutter_xlider.dart';
@@ -274,6 +275,8 @@ class _RecordSleepState extends State<RecordSleep> {
               ListTile(
                 title: TextField(
                   autocorrect: true,
+                  maxLines: null,
+                  keyboardType: TextInputType.multiline,
                   onChanged: (String change) => {
                         this.setState(() => {recording.notes = change})
                       },
@@ -286,7 +289,18 @@ class _RecordSleepState extends State<RecordSleep> {
                   Icons.chat_bubble_outline,
                   color: AppBlackColor,
                 ),
-              )
+              ),
+              AppButton(
+                fillColor: AppBlueColor,
+                onPress: () async {
+                  await recording.create();
+                  Navigator.pushNamed(context, '/');
+                },
+                padding: EdgeInsets.symmetric(
+                    horizontal: MediaQuery.of(context).size.width / 4,
+                    vertical: 10),
+                text: "Save",
+              ),
             ],
           ),
         ));
