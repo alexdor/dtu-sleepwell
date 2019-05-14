@@ -94,7 +94,7 @@ class ScatterPlot extends StatelessWidget {
       //  _date.microsecondsSinceEpoch
       final startTime = DateTime(_date.year, _date.month, _date.day, 00, 00);
       final endTime =
-          DateTime(_date.year, _date.month, _date.day, 23, 59, 99, 99);
+          DateTime(_date.year, _date.month, _date.day, 23, 59, 59, 999);
 
       bool found = false;
       if (recordings != null && recordings.length > 0) {
@@ -103,7 +103,8 @@ class ScatterPlot extends StatelessWidget {
             continue;
           }
           final t = DateTime.fromMicrosecondsSinceEpoch(item.date);
-          if (t.isAfter(startTime) && t.isBefore(endTime)) {
+          if ((t == startTime || t.isAfter(startTime)) &&
+              (t == endTime || t.isBefore(endTime))) {
             found = true;
             if (item.rating == null) {
               unknownData.add(ScatterPoint(

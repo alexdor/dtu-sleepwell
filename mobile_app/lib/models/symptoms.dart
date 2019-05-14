@@ -94,12 +94,12 @@ Future<List<RecordingModel>> symptoms() async {
   return null;
 }
 
-Future<List<RecordingModel>> symptomsBetween(int start, finish) async {
+Future<List<RecordingModel>> symptomsBetween(int start, int finish) async {
   // Get a reference to the database
   final Database db = await DatabaseHelper.instance.database;
 
   final List<Map<String, dynamic>> maps = await db.query('recordings',
-      orderBy: 'date DESC', where: "date > $start AND date < $finish");
+      orderBy: 'date DESC', where: "date >= $start AND date <= $finish");
 
   if (maps.length > 0) {
     return List.generate(maps.length, (i) {

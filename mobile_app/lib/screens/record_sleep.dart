@@ -18,7 +18,7 @@ class RecordSleep extends StatefulWidget {
 class _RecordSleepState extends State<RecordSleep> {
   DateTime _dateTime = new DateTime.now();
   double _value = 0.0;
-  Duration _duration = new Duration(hours: 8, minutes: 00);
+  Duration _duration = new Duration(hours: 8);
   bool didYouHadSymptoms;
   RecordingModel recording = RecordingModel();
 
@@ -87,7 +87,7 @@ class _RecordSleepState extends State<RecordSleep> {
   Future<Null> _selectTime(BuildContext context) async {
     Duration resultingDuration = await showDurationPicker(
       context: context,
-      initialTime: new Duration(hours: 7, minutes: 45),
+      initialTime: _duration,
     );
     if (resultingDuration == null) {
       return;

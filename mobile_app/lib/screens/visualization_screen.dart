@@ -42,9 +42,11 @@ class _VisualizationScreenState extends State<VisualizationScreen> {
 
   void fetchSymptoms() async {
     DateTime now = new DateTime.now();
-    DateTime start = now.subtract(new Duration(days: now.weekday));
+    DateTime start = now.subtract(new Duration(days: now.weekday + 2));
+
     List<RecordingModel> tmp = await symptomsBetween(
-        start.microsecondsSinceEpoch, now.microsecondsSinceEpoch);
+        start.microsecondsSinceEpoch,
+        now.add(new Duration(days: 1)).microsecondsSinceEpoch);
     if (tmp == null) {
       this.setState(() {
         recording = [RecordingModel()];
