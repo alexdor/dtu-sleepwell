@@ -94,7 +94,7 @@ class CenterInfo {
 
 const Color _strokeColor = Color(0xff979797);
 final Paint _backgroundPaint = Paint()
-  ..color = SecondayBackgroundColor
+  ..color = SecondaryBackgroundColor
   ..strokeWidth = 24.0
   ..strokeJoin = StrokeJoin.round;
 
@@ -232,7 +232,7 @@ class MyPainter extends CustomPainter {
     } else if (centerInfo.percent < 70) {
       _lastLine = "${centerInfo.percent}% Good";
     } else {
-      _lastLine = "${centerInfo.percent}% Excelent";
+      _lastLine = "${centerInfo.percent}% Excellent";
     }
 
     span = new TextSpan(

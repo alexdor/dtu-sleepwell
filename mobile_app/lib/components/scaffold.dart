@@ -19,7 +19,7 @@ class ScreenScaffold extends StatelessWidget {
           ? null
           : AppBar(
               automaticallyImplyLeading: true,
-              backgroundColor: SecondayBackgroundColor,
+              backgroundColor: SecondaryBackgroundColor,
               actions: actions,
               title: title,
             ),
@@ -77,7 +77,7 @@ class ScreenScaffold extends StatelessWidget {
               )
             ]),
         shape: CircularNotchedRectangle(),
-        color: SecondayBackgroundColor,
+        color: SecondaryBackgroundColor,
       ),
     );
   }

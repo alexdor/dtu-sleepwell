@@ -37,12 +37,12 @@ class _RecordSleepState extends State<RecordSleep> {
     this.setState(() => didYouHadSymptoms = false);
   }
 
-  void setHeadaceSymptoms() {
-    if (recording.headace != null && recording.headace == 1) {
-      this.setState(() => recording.headace = 0);
+  void setHeadacheSymptoms() {
+    if (recording.headache != null && recording.headache == 1) {
+      this.setState(() => recording.headache = 0);
       return;
     }
-    this.setState(() => recording.headace = 1);
+    this.setState(() => recording.headache = 1);
   }
 
   void setNightmaresSymptoms() {
@@ -187,7 +187,7 @@ class _RecordSleepState extends State<RecordSleep> {
                       })
                     },
                 tooltip: FlutterSliderTooltip(
-                  //dissable the number above the slider
+                  //disable the number above the slider
                   disabled: true,
                 ),
                 handler: FlutterSliderHandler(
@@ -198,12 +198,12 @@ class _RecordSleepState extends State<RecordSleep> {
                         //padding: EdgeInsets.all(5),
                         child: Icon(
                           Icons.brightness_1,
-                          color: SecondayBackgroundColor,
+                          color: SecondaryBackgroundColor,
                         ),
                       ),
                     )),
                 trackBar: FlutterSliderTrackBar(
-                  activeTrackBarColor: SecondayBackgroundColor,
+                  activeTrackBarColor: SecondaryBackgroundColor,
                   //activeTrackBarHeight: 5,
                   inactiveTrackBarColor: Colors.grey.withOpacity(0.5),
                 ),
@@ -260,7 +260,7 @@ class _RecordSleepState extends State<RecordSleep> {
               didYouHadSymptoms != null && didYouHadSymptoms
                   ? RecordSymptoms(
                       model: recording,
-                      onHeadachePress: setHeadaceSymptoms,
+                      onHeadachePress: setHeadacheSymptoms,
                       onFreezingPress: setFreezingSymptoms,
                       onNightmaresPress: setNightmaresSymptoms,
                       onSweatingPress: setSweatingSymptoms,

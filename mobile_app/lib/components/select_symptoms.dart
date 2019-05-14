@@ -27,7 +27,7 @@ class RecordSymptoms extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           AppButton(
-            active: model.headace != null && model.headace == 1,
+            active: model.headache != null && model.headache == 1,
             text: "Headache",
             width: _width,
             onPress: onHeadachePress,

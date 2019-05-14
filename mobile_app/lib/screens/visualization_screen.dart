@@ -7,20 +7,20 @@ import 'package:sleep_well/components/loading.dart';
 import 'package:sleep_well/components/error.dart';
 import 'package:sleep_well/components/scaffold.dart';
 import 'package:sleep_well/components/scatter_plot.dart';
-import 'package:sleep_well/components/vizualization_header.dart';
+import 'package:sleep_well/components/visualization_header.dart';
 import 'package:sleep_well/helpers/enums.dart';
 import 'package:http/http.dart' as http;
 import 'package:sleep_well/models/api_response.dart';
 import 'package:sleep_well/models/symptoms.dart';
 
-class VizualizationScreen extends StatefulWidget {
+class VisualizationScreen extends StatefulWidget {
   final VisualizationTypes type;
-  VizualizationScreen({Key key, this.type}) : super(key: key);
+  VisualizationScreen({Key key, this.type}) : super(key: key);
 
-  _VizualizationScreenState createState() => _VizualizationScreenState(type);
+  _VisualizationScreenState createState() => _VisualizationScreenState(type);
 }
 
-class _VizualizationScreenState extends State<VizualizationScreen> {
+class _VisualizationScreenState extends State<VisualizationScreen> {
   List<ApiResponse> weekData;
   List<ApiResponse> monthData;
 
@@ -29,15 +29,15 @@ class _VizualizationScreenState extends State<VizualizationScreen> {
   String error;
   bool loading = true;
 
-  _VizualizationScreenState(this.type);
+  _VisualizationScreenState(this.type);
 
   @override
   void initState() {
     super.initState();
-    fetchData(null);
-    if (type == VisualizationTypes.WEEK) {
-      fetchSymptoms();
-    }
+    // Prefetch all the data
+    fetchData(VisualizationTypes.WEEK);
+    fetchData(VisualizationTypes.MONTH);
+    fetchSymptoms();
   }
 
   void fetchSymptoms() async {
@@ -45,6 +45,12 @@ class _VizualizationScreenState extends State<VizualizationScreen> {
     DateTime start = now.subtract(new Duration(days: now.weekday));
     List<RecordingModel> tmp = await symptomsBetween(
         start.microsecondsSinceEpoch, now.microsecondsSinceEpoch);
+    if (tmp == null) {
+      this.setState(() {
+        recording = [RecordingModel()];
+      });
+      return;
+    }
     this.setState(() {
       recording = tmp;
     });
@@ -95,6 +101,7 @@ class _VizualizationScreenState extends State<VizualizationScreen> {
   }
 
   void setType(VisualizationTypes t) {
+    // On type switch refetch data if needed
     switch (t) {
       case VisualizationTypes.MONTH:
         if (monthData == null) {
@@ -124,16 +131,16 @@ class _VizualizationScreenState extends State<VizualizationScreen> {
                 padding: EdgeInsets.symmetric(
                     horizontal: MediaQuery.of(context).size.width * 0.08),
                 children: <Widget>[
-              VizualizationHeader(vizType: type, setType: setType),
-              error != null ? Error(error: error) : Text(""),
+              VisualizationHeader(vizType: type, setType: setType),
+              error != null ? ErrorSleepWell(error: error) : Text(""),
               !loading
                   ? (type == VisualizationTypes.MONTH
-                      ? monthData != null
+                      ? (monthData != null
                           ? BarChart.withDataTransform(monthData)
-                          : Loading()
-                      : recording != null && weekData != null
-                          ? ScatterPlot.withDataTransform(weekData, recording)
                           : Loading())
+                      : ((recording != null && weekData != null)
+                          ? ScatterPlot.withDataTransform(weekData, recording)
+                          : Loading()))
                   : Loading()
             ])));
   }

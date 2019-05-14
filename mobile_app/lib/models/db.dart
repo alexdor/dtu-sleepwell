@@ -6,7 +6,7 @@ import 'package:path_provider/path_provider.dart';
 // singleton class to manage the database
 class DatabaseHelper {
   // This is the actual database filename that is saved in the docs directory.
-  static final _databaseName = "sleepwell.db";
+  static final _databaseName = "sleepwell.sqllite3";
   // Increment this version when you need to change the schema.
   static final _databaseVersion = 1;
 
@@ -42,6 +42,6 @@ class DatabaseHelper {
     );
 
     await db.execute(
-        "CREATE TABLE recordings(id INTEGER PRIMARY KEY NOT NULL, rating REAL NOT NULL, headace INTEGER,freezing INTEGER, nightmares INTEGER, sweating INTEGER, notes TEXT, duration INTEGER NOT NULL, date INTEGER NOT NULL)");
+        "CREATE TABLE recordings(id INTEGER PRIMARY KEY NOT NULL, rating REAL NOT NULL, headache INTEGER,freezing INTEGER, nightmares INTEGER, sweating INTEGER, notes TEXT, duration INTEGER NOT NULL, date INTEGER NOT NULL)");
   }
 }

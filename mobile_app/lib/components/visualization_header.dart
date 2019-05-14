@@ -4,11 +4,11 @@ import 'package:sleep_well/helpers/enums.dart';
 
 final _padding = EdgeInsets.symmetric(horizontal: 25, vertical: 10);
 
-class VizualizationHeader extends StatelessWidget {
+class VisualizationHeader extends StatelessWidget {
   final VisualizationTypes vizType;
   final Function setType;
 
-  const VizualizationHeader(
+  const VisualizationHeader(
       {Key key, this.vizType = VisualizationTypes.MONTH, this.setType})
       : super(key: key);
 

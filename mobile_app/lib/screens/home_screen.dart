@@ -138,7 +138,7 @@ class _HomePageState extends State<HomePage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      "Current sleep enviroment",
+                      "Current sleep environment",
                       style: TextStyle(
                           fontSize: 20,
                           color: AppBlackColor,
@@ -157,7 +157,7 @@ class _HomePageState extends State<HomePage> {
                       children: <Widget>[
                         Text("${temp == null ? 'loading' : temp + '\u2103'}",
                             style: _bottomTextStyle),
-                        Text("Temprature", style: _bottomTextStyleSmall)
+                        Text("Temperature", style: _bottomTextStyleSmall)
                       ],
                     ),
                     Column(

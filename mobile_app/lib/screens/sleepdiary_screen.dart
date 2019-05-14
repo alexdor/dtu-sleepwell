@@ -19,7 +19,7 @@ String _getDay(int date) {
 
 class _SleepDiaryState extends State<SleepDiary> {
   List<RecordingModel> data;
-
+  String error;
   @override
   void initState() {
     super.initState();
@@ -27,11 +27,21 @@ class _SleepDiaryState extends State<SleepDiary> {
   }
 
   void loadData() async {
-    var tmp = await symptoms();
-    print(tmp);
     setState(() {
-      data = tmp;
+      error = null;
     });
+    try {
+      var tmp = await symptoms();
+      if (tmp == null || tmp.length < 1) {
+        error = "No data";
+      }
+      setState(() {
+        data = tmp;
+      });
+    } catch (e) {
+      print(e);
+      this.setState(() => {error = "Failed to get sleep data"});
+    }
   }
 
   @override
@@ -42,20 +52,30 @@ class _SleepDiaryState extends State<SleepDiary> {
       body: new Container(
           child: ListView(
               shrinkWrap: true,
-              children: (data == null)
-                  ? <Widget>[Loading()]
-                  : <Widget>[
-                      Divider(),
-                      Wrap(
-                          children: data
-                              .map((f) => _SleepDiaryRow(
-                                    date: "${_getDay(f.date)}",
-                                    pad: _pad,
-                                    duration: "${getSeconds(f.duration)}in",
-                                    percent: f.rating,
-                                  ))
-                              .toList())
+              children: error != null
+                  ? <Widget>[
+                      Center(
+                          child: Padding(
+                              child: Text(
+                                error,
+                                style: DefaultFontFamily,
+                              ),
+                              padding: EdgeInsets.all(20)))
                     ]
+                  : (data == null)
+                      ? <Widget>[Center(child: Loading())]
+                      : <Widget>[
+                          Divider(),
+                          Wrap(
+                              children: data
+                                  .map((f) => _SleepDiaryRow(
+                                        date: "${_getDay(f.date)}",
+                                        pad: _pad,
+                                        duration: "${getSeconds(f.duration)}in",
+                                        percent: f.rating,
+                                      ))
+                                  .toList())
+                        ]
 
               // <Widget>[
               //     Divider(),

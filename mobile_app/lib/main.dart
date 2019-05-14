@@ -6,7 +6,7 @@ import 'package:sleep_well/screens/onboarding_screen.dart';
 import 'package:sleep_well/screens/record_sleep.dart';
 import 'package:sleep_well/screens/settings.dart';
 import 'package:sleep_well/screens/sleepdiary_screen.dart';
-import 'package:sleep_well/screens/vizualization_screen.dart';
+import 'package:sleep_well/screens/visualization_screen.dart';
 
 import 'models/settings.dart';
 
@@ -34,10 +34,10 @@ class SleepWell extends StatelessWidget {
         '/': (context) => HomePage(),
         '/diary': (context) => SleepDiary(),
         '/settings': (context) => Settings(),
-        '/monthdata': (context) => VizualizationScreen(
+        '/monthdata': (context) => VisualizationScreen(
               type: VisualizationTypes.MONTH,
             ),
-        '/weekdata': (context) => VizualizationScreen(
+        '/weekdata': (context) => VisualizationScreen(
               type: VisualizationTypes.WEEK,
             ),
       },

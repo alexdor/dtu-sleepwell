@@ -53,7 +53,7 @@ class ScatterPlot extends StatelessWidget {
 
     List<ScatterPoint> badData = [];
 
-    List<ScatterPoint> uknownData = [];
+    List<ScatterPoint> unknownData = [];
 
     List<ScatterPoint> avgData = [];
     for (var i = 0; i < data.length; i++) {
@@ -68,29 +68,37 @@ class ScatterPlot extends StatelessWidget {
           DateTime(_date.year, _date.month, _date.day, 23, 59, 99, 99);
 
       bool found = false;
-
-      for (RecordingModel item in recordings) {
-        final t = DateTime.fromMicrosecondsSinceEpoch(item.date);
-        if (t.isAfter(startTime) && t.isBefore(endTime)) {
-          found = true;
-          if (item.rating == null) {
-            uknownData.add(ScatterPoint(point.temp, point.humidity,
-                item.duration, charts.Color.fromHex(code: "#979797")));
-          } else if (item.rating < BadUpperLimit) {
-            badData.add(ScatterPoint(point.temp, point.humidity, item.duration,
-                charts.Color.fromHex(code: "#F28890")));
-          } else if (item.rating < GoodUpperLimit) {
-            avgData.add(ScatterPoint(point.temp, point.humidity, item.duration,
-                charts.Color.fromHex(code: "#FFD93B")));
-          } else {
-            goodData.add(ScatterPoint(point.temp, point.humidity, item.duration,
-                charts.Color.fromHex(code: "#82CCC8")));
+      if (recordings != null && recordings.length > 0) {
+        for (RecordingModel item in recordings) {
+          if (item == null || item.date == null) {
+            continue;
           }
-          break;
+          final t = DateTime.fromMicrosecondsSinceEpoch(item.date);
+          if (t.isAfter(startTime) && t.isBefore(endTime)) {
+            found = true;
+            if (item.rating == null) {
+              unknownData.add(ScatterPoint(
+                  point.temp,
+                  point.humidity,
+                  item.duration == null ? 1 : item.duration,
+                  charts.Color.fromHex(code: "#979797")));
+            } else if (item.rating < BadUpperLimit) {
+              badData.add(ScatterPoint(point.temp, point.humidity,
+                  item.duration, charts.Color.fromHex(code: "#F28890")));
+            } else if (item.rating < GoodUpperLimit) {
+              avgData.add(ScatterPoint(point.temp, point.humidity,
+                  item.duration, charts.Color.fromHex(code: "#FFD93B")));
+            } else {
+              goodData.add(ScatterPoint(point.temp, point.humidity,
+                  item.duration, charts.Color.fromHex(code: "#82CCC8")));
+            }
+            break;
+          }
         }
       }
+
       if (!found) {
-        uknownData.add(ScatterPoint(point.temp, point.humidity, 10000,
+        unknownData.add(ScatterPoint(point.temp, point.humidity, 10000,
             charts.Color.fromHex(code: "#979797")));
       }
     }
@@ -107,8 +115,8 @@ class ScatterPlot extends StatelessWidget {
         _buildBubble('Bad', badData),
       );
     }
-    if (uknownData.length > 0) {
-      chart.add(_buildBubble('Uknown', uknownData));
+    if (unknownData.length > 0) {
+      chart.add(_buildBubble('Unknown', unknownData));
     }
 
     return chart;

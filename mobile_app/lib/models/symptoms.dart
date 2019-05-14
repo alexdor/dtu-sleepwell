@@ -4,7 +4,7 @@ import 'package:sqflite/sqflite.dart';
 class RecordingModel {
   int id;
   double rating;
-  int headace;
+  int headache;
   int freezing;
   int nightmares;
   int sweating;
@@ -16,7 +16,7 @@ class RecordingModel {
     return {
       'id': id,
       'rating': rating,
-      'headace': headace,
+      'headache': headache,
       'freezing': freezing,
       'nightmares': nightmares,
       'sweating': sweating,
@@ -29,7 +29,7 @@ class RecordingModel {
   RecordingModel(
       {this.id,
       this.rating,
-      this.headace = 0,
+      this.headache = 0,
       this.freezing = 0,
       this.nightmares = 0,
       this.sweating = 0,
@@ -56,7 +56,7 @@ RecordingModel _valuesToModel(Map<String, dynamic> map) {
   return RecordingModel(
     id: map['id'],
     rating: map['rating'],
-    headace: map['headace'],
+    headache: map['headache'],
     freezing: map['freezing'],
     nightmares: map['nightmares'],
     sweating: map['sweating'],
