@@ -21,8 +21,10 @@ class VizualizationScreen extends StatefulWidget {
 }
 
 class _VizualizationScreenState extends State<VizualizationScreen> {
-  List<ApiResponse> data;
-  final VisualizationTypes type;
+  List<ApiResponse> weekData;
+  List<ApiResponse> monthData;
+
+  VisualizationTypes type;
   List<RecordingModel> recording;
   String error;
   bool loading = true;
@@ -32,7 +34,7 @@ class _VizualizationScreenState extends State<VizualizationScreen> {
   @override
   void initState() {
     super.initState();
-    fetchData();
+    fetchData(null);
     if (type == VisualizationTypes.WEEK) {
       fetchSymptoms();
     }
@@ -48,13 +50,17 @@ class _VizualizationScreenState extends State<VizualizationScreen> {
     });
   }
 
-  void fetchData() async {
+  void fetchData(VisualizationTypes t) async {
+    print(t);
+    if (t == null) {
+      t = type;
+    }
     this.setState(() {
       error = null;
     });
     try {
       var response = await http.get(
-          "$APIURL/duration?type=${type == VisualizationTypes.MONTH ? 'month' : 'week'}");
+          "$APIURL/duration?type=${t == VisualizationTypes.MONTH ? 'month' : 'week'}");
       if (response.statusCode != 200) {
         this.setState(() {
           error = "Network error";
@@ -66,8 +72,16 @@ class _VizualizationScreenState extends State<VizualizationScreen> {
       List<ApiResponse> tmp =
           body.map((f) => new ApiResponse.fromJSON(f)).toList();
 
+      if (t == VisualizationTypes.MONTH) {
+        this.setState(() {
+          monthData = tmp;
+          error = null;
+          loading = false;
+        });
+        return;
+      }
       this.setState(() {
-        data = tmp;
+        weekData = tmp;
         error = null;
         loading = false;
       });
@@ -80,6 +94,26 @@ class _VizualizationScreenState extends State<VizualizationScreen> {
     }
   }
 
+  void setType(VisualizationTypes t) {
+    switch (t) {
+      case VisualizationTypes.MONTH:
+        if (monthData == null) {
+          fetchData(t);
+        }
+        break;
+      case VisualizationTypes.WEEK:
+        if (weekData == null) {
+          fetchData(t);
+        }
+        if (recording == null) {
+          fetchSymptoms();
+        }
+    }
+    this.setState(() {
+      type = t;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return ScreenScaffold(
@@ -90,15 +124,15 @@ class _VizualizationScreenState extends State<VizualizationScreen> {
                 padding: EdgeInsets.symmetric(
                     horizontal: MediaQuery.of(context).size.width * 0.08),
                 children: <Widget>[
-              VizualizationHeader(
-                vizType: type,
-              ),
+              VizualizationHeader(vizType: type, setType: setType),
               error != null ? Error(error: error) : Text(""),
-              !loading && data != null
+              !loading
                   ? (type == VisualizationTypes.MONTH
-                      ? BarChart.withDataTransform(data)
-                      : recording != null
-                          ? ScatterPlot.withDataTransform(data, recording)
+                      ? monthData != null
+                          ? BarChart.withDataTransform(monthData)
+                          : Loading()
+                      : recording != null && weekData != null
+                          ? ScatterPlot.withDataTransform(weekData, recording)
                           : Loading())
                   : Loading()
             ])));

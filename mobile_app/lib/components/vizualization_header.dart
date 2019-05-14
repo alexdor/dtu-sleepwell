@@ -6,7 +6,10 @@ final _padding = EdgeInsets.symmetric(horizontal: 25, vertical: 10);
 
 class VizualizationHeader extends StatelessWidget {
   final VisualizationTypes vizType;
-  const VizualizationHeader({Key key, this.vizType = VisualizationTypes.MONTH})
+  final Function setType;
+
+  const VizualizationHeader(
+      {Key key, this.vizType = VisualizationTypes.MONTH, this.setType})
       : super(key: key);
 
   @override
@@ -16,21 +19,23 @@ class VizualizationHeader extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           AppButton(
-              fillColor: AppBlueColor,
               text: 'Week',
               padding: _padding,
+              active: vizType == VisualizationTypes.WEEK,
               onPress: () {
                 if (vizType == VisualizationTypes.MONTH) {
-                  Navigator.pushNamed(context, '/weekdata');
+                  setType(VisualizationTypes.WEEK);
+                  // Navigator.pushNamed(context, '/weekdata');
                 }
               }),
           AppButton(
-              fillColor: AppBlueColor,
               text: 'Month',
               padding: _padding,
+              active: vizType == VisualizationTypes.MONTH,
               onPress: () {
                 if (vizType == VisualizationTypes.WEEK) {
-                  Navigator.pushNamed(context, '/monthdata');
+                  setType(VisualizationTypes.MONTH);
+                  // Navigator.pushNamed(context, '/monthdata');
                 }
               }),
         ],

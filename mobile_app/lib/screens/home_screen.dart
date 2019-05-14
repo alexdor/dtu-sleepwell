@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -55,12 +56,15 @@ class _HomePageState extends State<HomePage> {
   String humidity;
   String temp;
   RecordingModel model;
+  Timer timer;
+
   @override
   void initState() {
     super.initState();
 
     fetchModel();
     fetchData();
+    timer = Timer.periodic(Duration(minutes: 2), (Timer t) => fetchData());
   }
 
   void fetchData() async {
@@ -177,6 +181,12 @@ class _HomePageState extends State<HomePage> {
       hideAppBar: true,
     );
   }
+
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
+  }
 }
 
 class DonutPieChart extends StatelessWidget {
@@ -189,7 +199,6 @@ class DonutPieChart extends StatelessWidget {
   factory DonutPieChart.percent(double percent) {
     return new DonutPieChart(
       _createPercentData(percent),
-      // Disable animations for image tests.
       animate: false,
     );
   }

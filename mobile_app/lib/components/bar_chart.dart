@@ -11,7 +11,6 @@ class BarChart extends StatelessWidget {
   factory BarChart.withDataTransform(List<ApiResponse> data) {
     return new BarChart(
       _transformData(data),
-      // Disable animations for image tests.
       animate: false,
     );
   }

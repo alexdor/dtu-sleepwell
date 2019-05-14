@@ -43,7 +43,6 @@ class ScatterPlot extends StatelessWidget {
       List<ApiResponse> data, List<RecordingModel> recordings) {
     return new ScatterPlot(
       seriesList: _withDataTransform(data, recordings),
-      // Disable animations for image tests.
       animate: false,
     );
   }
