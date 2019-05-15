@@ -93,7 +93,7 @@ class BarChart extends StatelessWidget {
       if (data[i].humidity == 0 && data[i].temp == 0) {
         continue;
       }
-      String _week = 'Week $i';
+      String _week = 'Week ${i + 1}';
       idealHumData.add(new RoomRecording(_week, 20));
       idealHumDataLow.add(new RoomRecording(_week, 30));
 
