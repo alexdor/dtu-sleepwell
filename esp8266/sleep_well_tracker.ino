@@ -83,7 +83,7 @@ void sendMessage(double humidity, double temp, double heatIndex)
   client.setInsecure();
   HTTPClient https;
 
-  https.begin(client, "sleep-well.cdrproject.com", 80, "/esp");
+  https.begin(client, "sleep-well.cdrproject.com", 443, "/esp");
   https.addHeader("Content-Type", "text/json"); //Specify content-type header
   StaticJsonDocument<500> jsonBuffer;
 
@@ -115,8 +115,7 @@ void loop()
     wifiConnect();
   }
 
-  // Report every 2 seconds.
-  if (timeSinceLastRead > 2000)
+  if (timeSinceLastRead >= 300000)
   {
     // Reading temperature or humidity takes about 250 milliseconds!
     // Sensor readings may also be up to 2 seconds 'old' (its a very slow sensor)
@@ -151,6 +150,6 @@ void loop()
 
     timeSinceLastRead = 0;
   }
-  delay(100);
-  timeSinceLastRead += 100;
+  delay(300000);
+  timeSinceLastRead += 300000;
 }
