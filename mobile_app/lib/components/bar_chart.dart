@@ -27,17 +27,18 @@ class BarChart extends StatelessWidget {
           animate: animate,
           barGroupingType: charts.BarGroupingType.groupedStacked,
           // domainAxis: charts.AxisSpec(renderSpec: charts.NoneRenderSpec()),
-          defaultRenderer: new charts.BarRendererConfig(
+          defaultRenderer: charts.BarRendererConfig(
             groupingType: charts.BarGroupingType.groupedStacked,
           ),
           behaviors: [
-            new charts.SeriesLegend(
-                position: charts.BehaviorPosition.bottom,
-                horizontalFirst: true,
-                outsideJustification: charts.OutsideJustification.middle,
-                // cellPadding: new EdgeInsets.only(right: 8, bottom: 15.0),
-                entryTextStyle: charts.TextStyleSpec(
-                    color: charts.Color.black, fontSize: 11))
+            charts.SeriesLegend(
+              position: charts.BehaviorPosition.bottom,
+              horizontalFirst: true,
+              outsideJustification: charts.OutsideJustification.middle,
+              cellPadding: new EdgeInsets.only(right: 8, bottom: 15.0),
+              // entryTextStyle: charts.TextStyleSpec(
+              //     color: charts.Color.black, fontSize: 11)
+            )
           ],
         ),
       ),

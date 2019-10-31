@@ -143,12 +143,14 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
                     child: Center(
                       child: widget.isProgress
                           ? DotsIndicator(
-                              numberOfDot: widget.pages.length,
+                              dotsCount: widget.pages.length,
                               position: _currentPage,
-                              dotSpacing: widget.dotsSpacing,
-                              dotActiveSize: page.decoration.progressSize,
-                              dotSize: widget.progressSizes,
-                              dotActiveColor: page.decoration.progressColor,
+                              decorator: DotsDecorator(
+                                size: widget.progressSizes,
+                                activeSize: page.decoration.progressSize,
+                                activeColor: page.decoration.progressColor,
+                                spacing: widget.dotsSpacing,
+                              ),
                             )
                           : const SizedBox(),
                     ),
